@@ -1,0 +1,17 @@
+{
+  "name": "risklegacy2",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "fvtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types#main"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "scripts": {
+    "build": "bun build --format esm --outdir dist src/index.ts",
+    "dev": "bun build --watch --format esm --outdir dist src/index.ts"
+  }
+}

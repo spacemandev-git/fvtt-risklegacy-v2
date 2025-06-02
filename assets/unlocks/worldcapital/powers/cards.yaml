@@ -1,0 +1,29 @@
+namespace: advanced_tactics.powers.worldcapital.risklegacy.spacemandev
+data:
+  description: When recruiting troops, turn in at least 2 territory cards that have 4+ resources each.
+  type: mission
+---
+namespace: advanced_training.powers.eliminated.risklegacy.spacemandev
+data:
+  description: When recruiting troops, turn in 10+ troops
+  type: mission
+---
+namespace: forced_occupation.powers.eliminated.risklegacy.spacemandev
+data:
+  description: Knock out or Eliminate a player who has 3+ resource cards
+  type: missio
+---
+namespace: guerilla_warfare.powers.eliminated.risklegacy.spacemandev
+data:
+  description: Control all the Bunker and Mercenary territories
+  type: missio
+---
+namespace: urban_troop_surge.powers.eliminated.risklegacy.spacemandev
+data:
+  description: Control the World Captial and 3 Major Cities
+  type: missio
+---
+namespace: wide_border.powers.eliminated.risklegacy.spacemandev
+data:
+  description: Control 2 continents at the start of your turn.
+  type: mission
