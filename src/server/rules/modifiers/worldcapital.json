@@ -1,0 +1,100 @@
+{
+  "pack": "worldcapital",
+  "name": "World Capital Pack",
+  "description": "Unlocked when the World Capital mark is about to go on the board. Adds world capital mechanics and continental bonuses.",
+  "modifiers": [
+    {
+      "type": "add_subsection",
+      "section_id": "cities",
+      "subsection_id": "world_capital_mechanics",
+      "description": "Adds enhanced world capital mechanics",
+      "data": {
+        "title": "World Capital Mechanics",
+        "content": "The World Capital is a unique city with powerful bonuses and strategic importance.",
+        "rules": [
+          {
+            "id": "cities.world_capital.continent_bonus",
+            "text": "The World Capital provides +1 to all resource cards in its continent",
+            "priority": 2,
+            "modifiers": ["worldcapital"],
+            "tags": ["cities", "capital", "resources", "unlocks"],
+            "applies_to": "all"
+          },
+          {
+            "id": "cities.world_capital.population",
+            "text": "The World Capital has a population of 5",
+            "priority": 2,
+            "modifiers": ["worldcapital"],
+            "tags": ["cities", "capital", "population", "unlocks"],
+            "applies_to": "all"
+          },
+          {
+            "id": "cities.world_capital.control_bonus",
+            "text": "Controlling the World Capital provides +5 population for recruitment calculation",
+            "priority": 2,
+            "modifiers": ["worldcapital"],
+            "tags": ["cities", "capital", "recruit", "unlocks"],
+            "phase": "recruit",
+            "applies_to": "controller"
+          },
+          {
+            "id": "cities.world_capital.defensive",
+            "text": "The World Capital is automatically fortified and provides an additional +1 to defender dice",
+            "priority": 2,
+            "modifiers": ["worldcapital"],
+            "tags": ["cities", "capital", "combat", "fortification", "unlocks"],
+            "phase": "attack",
+            "applies_to": "defender"
+          },
+          {
+            "id": "cities.world_capital.conquest_star",
+            "text": "Conquering the World Capital from another player awards 1 Red Star token",
+            "priority": 2,
+            "modifiers": ["worldcapital"],
+            "tags": ["cities", "capital", "victory", "stars", "unlocks"],
+            "phase": "attack",
+            "applies_to": "attacker"
+          }
+        ],
+        "examples": [
+          {
+            "scenario": "Player controls World Capital in Asia",
+            "explanation": "All Asia territory cards gain +1 resource value, player gets +2 recruitment bonus, and territory has enhanced fortification"
+          }
+        ],
+        "related": ["cities.world_capital", "combat.fortification", "recruit.calculation"]
+      }
+    },
+    {
+      "type": "add_subsection",
+      "section_id": "victory",
+      "subsection_id": "world_capital_victory",
+      "description": "Adds world capital victory conditions",
+      "data": {
+        "title": "World Capital Victory",
+        "content": "The World Capital provides an alternative victory condition.",
+        "rules": [
+          {
+            "id": "victory.world_capital.alternate_win",
+            "text": "Control the World Capital and 3 other cities to gain 1 Red Star at the end of your turn",
+            "priority": 2,
+            "modifiers": ["worldcapital"],
+            "tags": ["victory", "cities", "capital", "unlocks"],
+            "applies_to": "all"
+          }
+        ],
+        "examples": [],
+        "related": ["victory.stars", "cities.world_capital"]
+      }
+    },
+    {
+      "type": "modify_rule",
+      "rule_id": "cities.world_capital.bonus",
+      "description": "Enhanced world capital bonus with unlock",
+      "changes": {
+        "text": "The world capital provides +1 to all resource cards in its continent and powerful control bonuses",
+        "priority": 2
+      }
+    }
+  ]
+}

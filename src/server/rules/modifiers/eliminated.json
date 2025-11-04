@@ -1,0 +1,96 @@
+{
+  "pack": "eliminated",
+  "name": "Eliminated Pack",
+  "description": "Unlocked when a faction is eliminated from the game. Adds comeback mechanics and balance adjustments.",
+  "modifiers": [
+    {
+      "type": "add_section",
+      "section_id": "special_territories_eliminated",
+      "description": "Adds mercenary territory from eliminated pack",
+      "data": {
+        "id": "special_territories_eliminated",
+        "title": "Special Territories (Eliminated Pack)",
+        "summary": "New special territories added with the Eliminated pack",
+        "subsections": {
+          "mercenary_territory": {
+            "title": "Mercenary Territory",
+            "content": "A special territory that generates troops each turn.",
+            "rules": [
+              {
+                "id": "special_territories.mercenary.bonus",
+                "text": "If you control this territory at the end of your turn, add one troop to it",
+                "priority": 2,
+                "modifiers": ["eliminated"],
+                "tags": ["territories", "special", "troops", "unlocks"],
+                "phase": "turn_end",
+                "applies_to": "controller"
+              }
+            ],
+            "examples": [],
+            "related": ["territories"]
+          }
+        }
+      }
+    },
+    {
+      "type": "add_subsection",
+      "section_id": "recruit",
+      "subsection_id": "eliminated_bonus",
+      "description": "Adds bonus for eliminated players rejoining",
+      "data": {
+        "title": "Eliminated Player Bonus",
+        "content": "Players who have been eliminated and are rejoining the war receive bonuses to help them catch up.",
+        "rules": [
+          {
+            "id": "recruit.eliminated.comeback_bonus",
+            "text": "When Joining the War after elimination, add +2 troops to your starting amount",
+            "priority": 2,
+            "modifiers": ["eliminated"],
+            "tags": ["recruit", "elimination", "balance", "unlocks"],
+            "phase": "recruit",
+            "applies_to": "eliminated_players"
+          },
+          {
+            "id": "recruit.eliminated.bonus_card",
+            "text": "Draw one Resource card when successfully Joining the War",
+            "priority": 2,
+            "modifiers": ["eliminated"],
+            "tags": ["recruit", "elimination", "cards", "unlocks"],
+            "phase": "recruit",
+            "applies_to": "eliminated_players"
+          }
+        ],
+        "examples": [
+          {
+            "scenario": "Player was eliminated and Joins the War next turn",
+            "explanation": "Player receives (8 / 2) + 2 = 6 troops instead of 4, plus draws a Resource card"
+          }
+        ],
+        "related": ["recruit.join_the_war"]
+      }
+    },
+    {
+      "type": "add_rule",
+      "section_id": "victory",
+      "subsection_id": "stars",
+      "description": "Adds vengeance bonus",
+      "rule": {
+        "id": "victory.stars.vengeance",
+        "text": "If you eliminate the player who eliminated you, gain 1 Red Star token",
+        "priority": 2,
+        "modifiers": ["eliminated"],
+        "tags": ["victory", "stars", "elimination", "unlocks"],
+        "applies_to": "all"
+      }
+    },
+    {
+      "type": "modify_rule",
+      "rule_id": "recruit.join.half_troops",
+      "description": "Enhanced rejoining with eliminated pack",
+      "changes": {
+        "text": "Take HALF your starting troops plus eliminated bonus (+2) and place them in a legal starting territory",
+        "priority": 2
+      }
+    }
+  ]
+}

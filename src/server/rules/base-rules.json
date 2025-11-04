@@ -147,7 +147,7 @@
             },
             {
               "id": "setup.placement.starting_troops",
-              "text": "Each player receives starting troops based on player count",
+              "text": "Each player receives their full starting troop total, which is 8",
               "priority": 1,
               "tags": ["setup", "placement", "troops"],
               "phase": "setup",
@@ -174,6 +174,14 @@
               "text": "Only one HQ can exist in a territory",
               "priority": 1,
               "tags": ["setup", "hq", "territories"],
+              "phase": "setup",
+              "applies_to": "all"
+            },
+            {
+              "id": "setup.hq.not_adjacent",
+              "text": "At the start of the game, you cannot place your HQ adjacent to another faction's HQ",
+              "priority": 1,
+              "tags": ["setup", "hq", "adjacency"],
               "phase": "setup",
               "applies_to": "all"
             }
@@ -240,8 +248,64 @@
     "recruit": {
       "id": "recruit",
       "title": "Recruit Phase",
-      "summary": "How to recruit and place troops at the start of your turn",
+      "summary": "How to recruit and place troops at the start of your turn, or rejoin the war if eliminated",
       "subsections": {
+        "join_or_recruit": {
+          "title": "Join the War or Recruit Troops",
+          "content": "If you do not control a territory, you must Join the War. If you control at least one territory, you must Recruit Troops. Do not do both steps.",
+          "rules": [
+            {
+              "id": "recruit.join_or_recruit.choice",
+              "text": "You must either Join the War or Recruit Troops, not both",
+              "priority": 1,
+              "tags": ["recruit", "turn"],
+              "phase": "recruit",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": []
+        },
+        "join_the_war": {
+          "title": "Join the War",
+          "content": "If you do not control a territory, you may Join the War provided there is a legal starting territory for you to use.",
+          "rules": [
+            {
+              "id": "recruit.join.when",
+              "text": "If you do not control a territory, you must Join the War during this part of your turn",
+              "priority": 1,
+              "tags": ["recruit", "elimination"],
+              "phase": "recruit",
+              "applies_to": "all"
+            },
+            {
+              "id": "recruit.join.half_troops",
+              "text": "Take HALF your starting troops and place them in a legal starting territory",
+              "priority": 1,
+              "tags": ["recruit", "elimination"],
+              "phase": "recruit",
+              "applies_to": "all"
+            },
+            {
+              "id": "recruit.join.no_hq",
+              "text": "You do not get another HQ when Joining the War",
+              "priority": 1,
+              "tags": ["recruit", "elimination", "hq"],
+              "phase": "recruit",
+              "applies_to": "all"
+            },
+            {
+              "id": "recruit.join.eliminated",
+              "text": "If there are no legal starting territories, then you are eliminated from the game, even if a legal starting territory opens up later",
+              "priority": 1,
+              "tags": ["recruit", "elimination"],
+              "phase": "recruit",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["setup"]
+        },
         "calculation": {
           "title": "Troop Calculation",
           "content": "Count your controlled territories plus population (cities), divide by 3, round down. Minimum 3 troops.",
@@ -313,35 +377,43 @@
         },
         "card_turnin": {
           "title": "Card Turn-in",
-          "content": "Instead of recruiting normally, you may turn in resource card sets for bonus troops.",
+          "content": "You may turn in Resource cards (Territory or Coin cards) for bonus troops based on total resources.",
           "rules": [
             {
               "id": "recruit.cards.option",
-              "text": "You may turn in card sets instead of normal recruitment",
+              "text": "You may turn in card sets for troops in addition to normal recruitment",
               "priority": 1,
               "tags": ["recruit", "cards"],
               "phase": "recruit",
               "applies_to": "all"
             },
             {
-              "id": "recruit.cards.same_territory",
-              "text": "3 cards of the same territory = 4 troops",
+              "id": "recruit.cards.resource_based",
+              "text": "You may turn in 2 to 10 Resource icons (coins) for troops",
               "priority": 1,
               "tags": ["recruit", "cards"],
               "phase": "recruit",
               "applies_to": "all"
             },
             {
-              "id": "recruit.cards.different_continents",
-              "text": "1 card from each of 3 different continents = 8 troops",
+              "id": "recruit.cards.chart",
+              "text": "Resource card turn-in values: 4-5 resources = 4 troops, 6-7 resources = 6 troops, 8-9 resources = 8 troops, 10+ resources = 10 troops",
               "priority": 1,
               "tags": ["recruit", "cards"],
               "phase": "recruit",
               "applies_to": "all"
             },
             {
-              "id": "recruit.cards.matching_values",
-              "text": "3 or more cards with matching values = 4 × value troops",
+              "id": "recruit.cards.no_change",
+              "text": "You do not get change when turning in Resource cards",
+              "priority": 1,
+              "tags": ["recruit", "cards"],
+              "phase": "recruit",
+              "applies_to": "all"
+            },
+            {
+              "id": "recruit.cards.territories_irrelevant",
+              "text": "The territories on the cards are irrelevant when recruiting troops",
               "priority": 1,
               "tags": ["recruit", "cards"],
               "phase": "recruit",
@@ -350,16 +422,12 @@
           ],
           "examples": [
             {
-              "scenario": "Turn in 3 Alaska cards",
-              "explanation": "Receive 4 troops to place in Alaska"
+              "scenario": "Turn in cards with 5 total resources",
+              "explanation": "Receive 4 troops (4-5 resources = 4 troops)"
             },
             {
-              "scenario": "Turn in 1 North America card, 1 Europe card, 1 Asia card",
-              "explanation": "Receive 8 troops to place anywhere"
-            },
-            {
-              "scenario": "Turn in 3 cards each with value 2",
-              "explanation": "Receive 4 × 2 = 8 troops"
+              "scenario": "Turn in cards with 8 total resources",
+              "explanation": "Receive 8 troops (8-9 resources = 8 troops)"
             }
           ],
           "related": ["cards"]
@@ -371,6 +439,46 @@
       "title": "Combat Rules",
       "summary": "How to attack territories and resolve combat",
       "subsections": {
+        "expanding": {
+          "title": "Expanding into Unoccupied Territories",
+          "content": "Expanding into an unoccupied territory is straightforward. Move at least 1 troop from an adjacent territory you control into the unoccupied territory.",
+          "rules": [
+            {
+              "id": "combat.expanding.basic",
+              "text": "To expand into an unoccupied territory, move at least 1 troop from an adjacent territory you control",
+              "priority": 1,
+              "tags": ["combat", "expansion"],
+              "phase": "attack",
+              "applies_to": "all"
+            },
+            {
+              "id": "combat.expanding.cities",
+              "text": "When expanding into an unoccupied territory with a city, you lose troops equal to the population of that city due to entrenched resistance",
+              "priority": 1,
+              "tags": ["combat", "expansion", "cities"],
+              "phase": "attack",
+              "applies_to": "all"
+            },
+            {
+              "id": "combat.expanding.cities_requirement",
+              "text": "If you would not have enough troops to keep control of a city territory after losing troops equal to its population, you cannot expand into it",
+              "priority": 1,
+              "tags": ["combat", "expansion", "cities"],
+              "phase": "attack",
+              "applies_to": "all"
+            },
+            {
+              "id": "combat.expanding.cities_vs_attack",
+              "text": "Moving troops into a city territory with enemy troops is attacking, not expanding, and you do not lose additional troops after conquest",
+              "priority": 1,
+              "tags": ["combat", "expansion", "cities"],
+              "phase": "attack",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["cities"]
+        },
         "attacking": {
           "title": "Initiating an Attack",
           "content": "To attack, you must have at least 2 troops in the attacking territory and attack an adjacent enemy territory.",
@@ -507,7 +615,7 @@
           "rules": [
             {
               "id": "combat.fortification.bonus",
-              "text": "Fortified territories add +1 to the defender's highest die",
+              "text": "Fortified territories add +1 to each of the defender's dice",
               "priority": 1,
               "tags": ["combat", "fortification", "defender"],
               "phase": "attack",
@@ -568,9 +676,33 @@
           "rules": [
             {
               "id": "combat.missiles.usage",
-              "text": "Missiles can be used to modify a single die by ±1",
+              "text": "Missiles can be discarded to change one die in the combat roll to an unmodifiable 6",
               "priority": 1,
               "tags": ["combat", "missiles"],
+              "phase": "attack",
+              "applies_to": "all"
+            },
+            {
+              "id": "combat.missiles.any_player",
+              "text": "Any player (even those not involved in the battle) may discard Missiles after dice are rolled but before troops are removed",
+              "priority": 1,
+              "tags": ["combat", "missiles"],
+              "phase": "attack",
+              "applies_to": "all"
+            },
+            {
+              "id": "combat.missiles.multiple",
+              "text": "A player may discard multiple Missiles to change multiple dice per battle",
+              "priority": 1,
+              "tags": ["combat", "missiles"],
+              "phase": "attack",
+              "applies_to": "all"
+            },
+            {
+              "id": "combat.missiles.priority",
+              "text": "If multiple players try to use Missiles simultaneously, priority goes to current player (attacker), then defender, then clockwise from attacker",
+              "priority": 1,
+              "tags": ["combat", "missiles", "timing"],
               "phase": "attack",
               "applies_to": "all"
             },
@@ -593,8 +725,8 @@
           ],
           "examples": [
             {
-              "scenario": "Attacker rolls a 5 and uses a missile",
-              "explanation": "Die result can become 4 or 6"
+              "scenario": "Attacker rolls a 3 and uses a missile",
+              "explanation": "Die result becomes an unmodifiable 6"
             }
           ],
           "related": []
@@ -684,21 +816,53 @@
       "subsections": {
         "drawing": {
           "title": "Drawing Cards",
-          "content": "Draw cards at the end of your turn if you conquered at least one territory.",
+          "content": "Draw cards at the end of your turn if you conquered at least one territory from an opponent.",
           "rules": [
             {
-              "id": "cards.drawing.territory_card",
-              "text": "Draw 1 territory card if you conquered at least 1 territory this turn",
+              "id": "cards.drawing.requirement",
+              "text": "You are eligible to draw 1 Resource card if you attacked and conquered at least 1 territory on your turn",
               "priority": 1,
               "tags": ["cards", "draw"],
               "phase": "draw",
               "applies_to": "all"
             },
             {
-              "id": "cards.drawing.coin_card",
-              "text": "Draw 1 coin card if you conquered 4 or more territories this turn",
+              "id": "cards.drawing.conquest_required",
+              "text": "You must have taken a territory from an opponent to draw a card. Expanding into an unoccupied territory does not enable you to draw a card",
+              "priority": 1,
+              "tags": ["cards", "draw"],
+              "phase": "draw",
+              "applies_to": "all"
+            },
+            {
+              "id": "cards.drawing.face_up_selection",
+              "text": "Look at the face-up Territory cards on the sideboard. If you control one or more territories shown, you must select one of those cards",
+              "priority": 1,
+              "tags": ["cards", "draw", "territory"],
+              "phase": "draw",
+              "applies_to": "all"
+            },
+            {
+              "id": "cards.drawing.coin_fallback",
+              "text": "If you cannot draw any of the territories shown on face-up cards, you must draw one of the face-up Coin cards",
               "priority": 1,
               "tags": ["cards", "draw", "coin"],
+              "phase": "draw",
+              "applies_to": "all"
+            },
+            {
+              "id": "cards.drawing.no_cards",
+              "text": "If there are no face-up Coin cards and you cannot draw any face-up Territory cards, you do not get to draw a Resource card",
+              "priority": 1,
+              "tags": ["cards", "draw"],
+              "phase": "draw",
+              "applies_to": "all"
+            },
+            {
+              "id": "cards.drawing.one_per_turn",
+              "text": "You can only draw 1 card per turn unless specifically directed by an event",
+              "priority": 1,
+              "tags": ["cards", "draw"],
               "phase": "draw",
               "applies_to": "all"
             },
@@ -844,11 +1008,10 @@
           "content": "HQs provide combat bonuses and are worth stars when conquered.",
           "rules": [
             {
-              "id": "hq.properties.combat_value",
-              "text": "HQ counts as 1 troop for combat purposes",
+              "id": "hq.properties.occupies_territory",
+              "text": "HQ occupies the territory but does not count as a troop for combat purposes",
               "priority": 1,
-              "tags": ["hq", "combat"],
-              "phase": "attack",
+              "tags": ["hq", "territories"],
               "applies_to": "all"
             },
             {
@@ -907,7 +1070,7 @@
     "cities": {
       "id": "cities",
       "title": "Cities",
-      "summary": "Minor cities and world capital mechanics",
+      "summary": "Minor cities provide population bonuses for recruitment",
       "subsections": {
         "minor_cities": {
           "title": "Minor Cities",
@@ -938,28 +1101,6 @@
           ],
           "examples": [],
           "related": ["recruit.calculation"]
-        },
-        "world_capital": {
-          "title": "World Capital",
-          "content": "The special world capital city provides continent-wide bonuses.",
-          "rules": [
-            {
-              "id": "cities.capital.bonus",
-              "text": "The world capital provides +1 to all resource cards in its continent",
-              "priority": 1,
-              "tags": ["cities", "capital", "resources"],
-              "applies_to": "all"
-            },
-            {
-              "id": "cities.capital.unique",
-              "text": "Only 1 world capital can be founded",
-              "priority": 1,
-              "tags": ["cities", "capital", "legacy"],
-              "applies_to": "all"
-            }
-          ],
-          "examples": [],
-          "related": ["cards.territory_cards"]
         }
       }
     },
@@ -970,14 +1111,21 @@
       "subsections": {
         "general": {
           "title": "Mission Mechanics",
-          "content": "Missions are secret objectives that players work toward during the game.",
+          "content": "Missions are public objectives that any player may work toward during the game.",
           "rules": [
             {
               "id": "missions.general.dealing",
-              "text": "Mission cards are dealt at the start of the game and kept secret",
+              "text": "At the start of the game, randomly place one Mission card face up in the Mission card slot on the sideboard",
               "priority": 1,
               "tags": ["missions", "setup"],
               "phase": "setup",
+              "applies_to": "all"
+            },
+            {
+              "id": "missions.general.public",
+              "text": "Mission cards are public and any player may try to complete them",
+              "priority": 1,
+              "tags": ["missions"],
               "applies_to": "all"
             },
             {
@@ -988,17 +1136,38 @@
               "applies_to": "all"
             },
             {
-              "id": "missions.general.discard",
-              "text": "You may discard your mission once per game to draw a new one",
+              "id": "missions.general.claiming",
+              "text": "At the end of your turn, if you have completed the face up mission, you may discard it and take your reward as noted (one or two Red Star tokens)",
+              "priority": 1,
+              "tags": ["missions", "stars"],
+              "applies_to": "all"
+            },
+            {
+              "id": "missions.general.replacement",
+              "text": "If the game is not yet over after completing a mission, place a new random mission in the mission slot",
               "priority": 1,
               "tags": ["missions"],
               "applies_to": "all"
             },
             {
-              "id": "missions.general.claiming",
-              "text": "You must claim mission completion to receive the star",
+              "id": "missions.general.one_per_turn",
+              "text": "You can only complete one mission per turn",
               "priority": 1,
-              "tags": ["missions", "stars"],
+              "tags": ["missions"],
+              "applies_to": "all"
+            },
+            {
+              "id": "missions.general.no_card_draw",
+              "text": "You cannot draw a Resource card on the same turn that you complete a mission",
+              "priority": 1,
+              "tags": ["missions", "cards"],
+              "applies_to": "all"
+            },
+            {
+              "id": "missions.general.optional",
+              "text": "You can always draw a Resource card instead of completing a Mission, if you are entitled to one",
+              "priority": 1,
+              "tags": ["missions", "cards"],
               "applies_to": "all"
             }
           ],
@@ -1314,51 +1483,211 @@
     "endgame": {
       "id": "endgame",
       "title": "End Game Phase",
-      "summary": "What happens when a player wins",
+      "summary": "What happens when a player wins - recording results and earning rewards",
       "subsections": {
+        "game_end_trigger": {
+          "title": "Game End Conditions",
+          "content": "The game ends immediately when specific conditions are met.",
+          "rules": [
+            {
+              "id": "endgame.trigger.four_stars",
+              "text": "As soon as a player has 4 Red Stars, the game is over",
+              "priority": 1,
+              "tags": ["endgame", "victory"],
+              "applies_to": "all"
+            },
+            {
+              "id": "endgame.trigger.all_eliminated",
+              "text": "If all other players are eliminated, the game is over",
+              "priority": 1,
+              "tags": ["endgame", "victory"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["victory"]
+        },
+        "recording_results": {
+          "title": "Recording Game Results",
+          "content": "All players record the outcome on their faction cards.",
+          "rules": [
+            {
+              "id": "endgame.recording.everyone",
+              "text": "All players turn over their Faction cards and record whether that Faction Won the game, Held On (didn't win but was still in the game), or was Eliminated",
+              "priority": 1,
+              "tags": ["endgame", "legacy"],
+              "applies_to": "all"
+            },
+            {
+              "id": "endgame.recording.eliminated_definition",
+              "text": "If you have no troops on the board when the game ends, you are considered Eliminated even if you could've Joined the War on your next turn",
+              "priority": 1,
+              "tags": ["endgame", "elimination"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["factions"]
+        },
         "winner_actions": {
           "title": "Winner Actions",
-          "content": "The winner performs special actions that permanently modify the game.",
+          "content": "The winner signs the board and chooses ONE reward to permanently modify the game. This applies for the first 15 games.",
           "rules": [
             {
               "id": "endgame.winner.sign_board",
-              "text": "Winner signs the board with their name and date",
+              "text": "Winner signs their name and dates the next line on the board",
               "priority": 1,
               "tags": ["endgame", "legacy"],
               "applies_to": "winner"
             },
             {
-              "id": "endgame.winner.victory_sticker",
-              "text": "Winner places a victory sticker on a territory",
+              "id": "endgame.winner.first_fifteen",
+              "text": "The first 15 games played on this board allow the winner to change something to set up future wars",
               "priority": 1,
-              "tags": ["endgame", "stickers", "legacy"],
+              "tags": ["endgame", "legacy", "campaign"],
               "applies_to": "winner"
             },
             {
-              "id": "endgame.winner.stars",
-              "text": "Winner receives 1-2 stars based on stars already on the board",
+              "id": "endgame.winner.one_choice",
+              "text": "After signing the board, the winner gets to do ONE of the available winner rewards",
               "priority": 1,
-              "tags": ["endgame", "stars", "victory"],
+              "tags": ["endgame", "legacy"],
+              "applies_to": "winner"
+            },
+            {
+              "id": "endgame.winner.name_continent",
+              "text": "Winner reward option: Name a continent (+1 reinforcement for you only)",
+              "priority": 1,
+              "tags": ["endgame", "legacy", "continents"],
+              "applies_to": "winner"
+            },
+            {
+              "id": "endgame.winner.found_major_city",
+              "text": "Winner reward option: Name and found a major city (2 population)",
+              "priority": 1,
+              "tags": ["endgame", "legacy", "cities"],
+              "applies_to": "winner"
+            },
+            {
+              "id": "endgame.winner.cancel_scar",
+              "text": "Winner reward option: Cancel a Scar (Scar is destroyed)",
+              "priority": 1,
+              "tags": ["endgame", "legacy", "scars"],
+              "applies_to": "winner"
+            },
+            {
+              "id": "endgame.winner.change_continent_bonus",
+              "text": "Winner reward option: Change a continent bonus (+1 or -1 to that continent forever)",
+              "priority": 1,
+              "tags": ["endgame", "legacy", "continents"],
+              "applies_to": "winner"
+            },
+            {
+              "id": "endgame.winner.fortification",
+              "text": "Winner reward option: Place a Fortification mark on a city (+1, +1 when defending)",
+              "priority": 1,
+              "tags": ["endgame", "legacy", "fortification", "cities"],
+              "applies_to": "winner"
+            },
+            {
+              "id": "endgame.winner.destroy_card",
+              "text": "Winner reward option: Destroy a Territory Card (card is destroyed)",
+              "priority": 1,
+              "tags": ["endgame", "legacy", "cards"],
               "applies_to": "winner"
             }
           ],
-          "examples": [],
-          "related": ["victory.stars", "legacy.stickers"]
+          "examples": [
+            {
+              "scenario": "Winner chooses to name a continent",
+              "explanation": "The six continents start unnamed. Winner names an unnamed continent, which gives them +1 bonus troop when controlling it in future games"
+            }
+          ],
+          "related": ["legacy.stickers", "cities", "continents"]
         },
-        "all_players": {
-          "title": "All Player Actions",
-          "content": "All players can contribute to faction scars.",
+        "held_on_actions": {
+          "title": "Held On Player Actions",
+          "content": "Players who held on (didn't win but weren't eliminated) choose rewards proceeding clockwise from the winner. This applies for the first 15 games.",
           "rules": [
             {
-              "id": "endgame.all_players.scars",
-              "text": "All players can add scars to factions at game end",
+              "id": "endgame.held_on.turn_order",
+              "text": "Proceeding clockwise from the winner, each player who Held On chooses one of the following",
               "priority": 1,
-              "tags": ["endgame", "scars", "legacy"],
+              "tags": ["endgame", "legacy"],
+              "applies_to": "held_on"
+            },
+            {
+              "id": "endgame.held_on.found_minor_city",
+              "text": "Held on reward option: Name and found a Minor City (+1 population) in a territory you controlled at game end",
+              "priority": 1,
+              "tags": ["endgame", "legacy", "cities"],
+              "applies_to": "held_on"
+            },
+            {
+              "id": "endgame.held_on.upgrade_card",
+              "text": "Held on reward option: Upgrade a card (+1 resource) for a territory you controlled at game end",
+              "priority": 1,
+              "tags": ["endgame", "legacy", "cards"],
+              "applies_to": "held_on"
+            },
+            {
+              "id": "endgame.held_on.no_rewards",
+              "text": "If there are no more Coins or Minor Cities to place, the losers no longer gain any additional rewards",
+              "priority": 1,
+              "tags": ["endgame", "legacy"],
+              "applies_to": "held_on"
+            },
+            {
+              "id": "endgame.held_on.controlled_territory",
+              "text": "When choosing rewards, you must choose a territory you controlled at the end of the game",
+              "priority": 1,
+              "tags": ["endgame", "legacy"],
+              "applies_to": "held_on"
+            }
+          ],
+          "examples": [
+            {
+              "scenario": "Player held on and chooses to found a Minor City",
+              "explanation": "Player selects a territory they controlled at game end that doesn't have a city, places a Minor City mark, and names it"
+            }
+          ],
+          "related": ["cities", "cards"]
+        },
+        "completed_world": {
+          "title": "Completed World",
+          "content": "After the 15th game, the world is complete and no further changes are made from winning or holding on.",
+          "rules": [
+            {
+              "id": "endgame.completed.fifteenth_game",
+              "text": "At the conclusion of the 15th game, once all rewards are chosen, the player who signed the victor's section most times gets to name the planet",
+              "priority": 1,
+              "tags": ["endgame", "legacy", "campaign"],
+              "applies_to": "all"
+            },
+            {
+              "id": "endgame.completed.tiebreaker",
+              "text": "If players are tied for most wins, those tied players roll off, adding 1 to their die roll for each continent they have named",
+              "priority": 1,
+              "tags": ["endgame", "legacy", "campaign"],
+              "applies_to": "all"
+            },
+            {
+              "id": "endgame.completed.no_more_changes",
+              "text": "After 15 games, no further changes are made to the game from Winning or Holding On",
+              "priority": 1,
+              "tags": ["endgame", "legacy", "campaign"],
+              "applies_to": "all"
+            },
+            {
+              "id": "endgame.completed.other_changes",
+              "text": "Other elements in the game, such as cards, new components, Scars, etc. will still change the world after 15 games",
+              "priority": 1,
+              "tags": ["endgame", "legacy", "campaign"],
               "applies_to": "all"
             }
           ],
           "examples": [],
-          "related": ["legacy.scars"]
+          "related": ["legacy.campaign"]
         },
         "unlock_check": {
           "title": "Unlock Conditions Check",
@@ -1479,13 +1808,23 @@
   },
   "glossary": [
     {
+      "term": "Controlled/Uncontrolled",
+      "definition": "You control a territory when you have one or more troops in it. You do not control a territory if your HQ is the only piece in it.",
+      "related": ["territories", "hq"]
+    },
+    {
+      "term": "Occupied/Unoccupied",
+      "definition": "A territory is occupied when any plastic piece is in it (troop or HQ). It is unoccupied when there are no plastic pieces in it.",
+      "related": ["territories"]
+    },
+    {
       "term": "HQ (Headquarters)",
-      "definition": "A special marker that counts as 1 troop, makes the territory fortified, and awards 1 star when conquered",
+      "definition": "A special marker that occupies a territory, makes the territory fortified, and awards 1 star when conquered",
       "related": ["hq", "combat.fortification", "victory.stars"]
     },
     {
       "term": "Fortified",
-      "definition": "A territory with a defensive bonus that adds +1 to the defender's highest die roll",
+      "definition": "A territory with a defensive bonus that adds +1 to each of the defender's dice",
       "related": ["combat.fortification", "hq"]
     },
     {
@@ -1505,7 +1844,7 @@
     },
     {
       "term": "Missile",
-      "definition": "A one-time use item that modifies a single combat die by ±1",
+      "definition": "A one-time use item that changes a single combat die to an unmodifiable 6",
       "related": ["combat.missiles"]
     },
     {
@@ -1547,11 +1886,6 @@
       "term": "City",
       "definition": "A sticker placed on a territory that provides +1 population for recruitment",
       "related": ["cities"]
-    },
-    {
-      "term": "World Capital",
-      "definition": "A special city that provides +1 to all resource cards in its continent",
-      "related": ["cities.world_capital"]
     },
     {
       "term": "Coin Card",

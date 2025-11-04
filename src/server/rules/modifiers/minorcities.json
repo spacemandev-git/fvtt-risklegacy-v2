@@ -20,8 +20,14 @@
                 "id": "draft.system.turn_order",
                 "text": "Players draft territories in turn order (fewest stars first)",
                 "priority": 2,
-                "modifiers": ["minorcities"],
-                "tags": ["draft", "setup", "unlocks"],
+                "modifiers": [
+                  "minorcities"
+                ],
+                "tags": [
+                  "draft",
+                  "setup",
+                  "unlocks"
+                ],
                 "phase": "setup",
                 "applies_to": "all"
               },
@@ -29,8 +35,14 @@
                 "id": "draft.system.snake_draft",
                 "text": "Use snake draft: 1st→last, then last→1st, repeating",
                 "priority": 2,
-                "modifiers": ["minorcities"],
-                "tags": ["draft", "setup", "unlocks"],
+                "modifiers": [
+                  "minorcities"
+                ],
+                "tags": [
+                  "draft",
+                  "setup",
+                  "unlocks"
+                ],
                 "phase": "setup",
                 "applies_to": "all"
               }
@@ -41,7 +53,9 @@
                 "explanation": "Player A → B → C → C → B → A → A → B → C, etc."
               }
             ],
-            "related": ["setup"]
+            "related": [
+              "setup"
+            ]
           }
         }
       }

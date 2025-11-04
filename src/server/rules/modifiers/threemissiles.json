@@ -1,0 +1,189 @@
+{
+  "pack": "threemissiles",
+  "name": "Three Missiles Pack",
+  "description": "Unlocked when three missiles are used on the same combat roll. Adds nuclear warfare mechanics and fallout territories.",
+  "modifiers": [
+    {
+      "type": "add_section",
+      "section_id": "nuclear",
+      "description": "Adds nuclear warfare mechanics",
+      "data": {
+        "id": "nuclear",
+        "title": "Nuclear Warfare",
+        "summary": "Devastating weapons with lasting consequences",
+        "subsections": {
+          "nuclear_missiles": {
+            "title": "Nuclear Missiles",
+            "content": "Enhanced missile capabilities with area effects and permanent consequences.",
+            "rules": [
+              {
+                "id": "nuclear.missiles.combination",
+                "text": "When 3+ missiles are used in the same combat roll by any combination of players, a nuclear detonation occurs",
+                "priority": 2,
+                "modifiers": ["threemissiles"],
+                "tags": ["nuclear", "missiles", "combat", "unlocks"],
+                "phase": "attack",
+                "applies_to": "all"
+              },
+              {
+                "id": "nuclear.missiles.detonation_effect",
+                "text": "Nuclear detonation eliminates all troops in both the attacking and defending territories, and creates fallout",
+                "priority": 2,
+                "modifiers": ["threemissiles"],
+                "tags": ["nuclear", "missiles", "combat", "unlocks"],
+                "phase": "attack",
+                "applies_to": "all"
+              },
+              {
+                "id": "nuclear.missiles.fallout_creation",
+                "text": "The territory where nuclear detonation occurred becomes a Fallout territory permanently",
+                "priority": 2,
+                "modifiers": ["threemissiles"],
+                "tags": ["nuclear", "fallout", "territories", "legacy", "unlocks"],
+                "phase": "attack",
+                "applies_to": "all"
+              }
+            ],
+            "examples": [
+              {
+                "scenario": "Attacker uses 2 missiles, defender uses 1 missile in same combat",
+                "explanation": "Nuclear detonation occurs, both territories lose all troops, defending territory becomes Fallout"
+              }
+            ],
+            "related": ["combat.missiles", "territories"]
+          },
+          "fallout_territories": {
+            "title": "Fallout Territories",
+            "content": "Irradiated territories with dangerous conditions.",
+            "rules": [
+              {
+                "id": "nuclear.fallout.expansion_penalty",
+                "text": "When a faction expands into or conquers a fallout territory, it immediately loses half its troops (round up)",
+                "priority": 2,
+                "modifiers": ["threemissiles"],
+                "tags": ["nuclear", "fallout", "territories", "combat", "unlocks"],
+                "phase": "attack",
+                "applies_to": "all"
+              },
+              {
+                "id": "nuclear.fallout.radiation",
+                "text": "Remove 1 troop from the fallout territory at the end of your turn if you control it",
+                "priority": 2,
+                "modifiers": ["threemissiles"],
+                "tags": ["nuclear", "fallout", "territories", "unlocks"],
+                "phase": "turn_end",
+                "applies_to": "controller"
+              },
+              {
+                "id": "nuclear.fallout.no_placement",
+                "text": "You cannot place troops into nor maneuver troops through the fallout territory",
+                "priority": 2,
+                "modifiers": ["threemissiles"],
+                "tags": ["nuclear", "fallout", "territories", "maneuver", "unlocks"],
+                "applies_to": "all"
+              },
+              {
+                "id": "nuclear.fallout.no_cities",
+                "text": "Cities cannot be founded in Fallout territories",
+                "priority": 2,
+                "modifiers": ["threemissiles"],
+                "tags": ["nuclear", "fallout", "territories", "cities", "unlocks"],
+                "applies_to": "all"
+              },
+              {
+                "id": "nuclear.fallout.permanent",
+                "text": "The fallout territory can no longer be marked, scarred, or modified in any way",
+                "priority": 2,
+                "modifiers": ["threemissiles"],
+                "tags": ["nuclear", "fallout", "territories", "legacy", "unlocks"],
+                "applies_to": "all"
+              },
+              {
+                "id": "nuclear.fallout.mutants_unaffected",
+                "text": "Mutants are unaffected by the fallout territory rules, and should treat it like a bio-hazard territory",
+                "priority": 2,
+                "modifiers": ["threemissiles"],
+                "tags": ["nuclear", "fallout", "factions", "unlocks"],
+                "applies_to": "mutants"
+              }
+            ],
+            "examples": [],
+            "related": ["territories", "cities", "cards"]
+          }
+        }
+      }
+    },
+    {
+      "type": "add_subsection",
+      "section_id": "combat",
+      "subsection_id": "missile_powers",
+      "description": "Adds enhanced missile powers system",
+      "data": {
+        "title": "Missile Powers",
+        "content": "Factions can gain special missile-based powers by earning stars.",
+        "rules": [
+          {
+            "id": "combat.missiles.power_gain",
+            "text": "A faction with an empty brown slot gains a Missile power (player's choice) the next time it earns a red star token during a game (starting tokens do not count)",
+            "priority": 2,
+            "modifiers": ["threemissiles"],
+            "tags": ["combat", "missiles", "powers", "unlocks"],
+            "applies_to": "all"
+          },
+          {
+            "id": "combat.missiles.power_usage",
+            "text": "Once per turn, you may discard 1 Missile to use your Missile power. Players may still use Missiles in combat",
+            "priority": 2,
+            "modifiers": ["threemissiles"],
+            "tags": ["combat", "missiles", "powers", "unlocks"],
+            "phase": "attack",
+            "applies_to": "all"
+          },
+          {
+            "id": "combat.missiles.defensive_use",
+            "text": "Missiles can now be used to reduce an opponent's die by 1 instead of setting to 6",
+            "priority": 2,
+            "modifiers": ["threemissiles"],
+            "tags": ["combat", "missiles", "unlocks"],
+            "phase": "attack",
+            "applies_to": "all"
+          },
+          {
+            "id": "combat.missiles.chain_reaction",
+            "text": "If a nuclear detonation occurs, all players holding missiles must discard one missile",
+            "priority": 2,
+            "modifiers": ["threemissiles"],
+            "tags": ["combat", "missiles", "nuclear", "unlocks"],
+            "phase": "attack",
+            "applies_to": "all"
+          },
+          {
+            "id": "combat.missiles.bringer_bonus",
+            "text": "Bringer of Nuclear Fire faction receives 2 Missile tokens at the start of the game as long as the mutant faction is also playing. These are in addition to any tokens received by the player",
+            "priority": 2,
+            "modifiers": ["threemissiles"],
+            "tags": ["combat", "missiles", "factions", "unlocks"],
+            "phase": "setup",
+            "applies_to": "bringer_of_nuclear_fire"
+          }
+        ],
+        "examples": [
+          {
+            "scenario": "Player uses missile to reduce opponent's 6 to 5",
+            "explanation": "Instead of setting own die to 6, player reduces enemy die"
+          }
+        ],
+        "related": ["combat.missiles", "nuclear"]
+      }
+    },
+    {
+      "type": "modify_rule",
+      "rule_id": "combat.missiles.usage",
+      "description": "Enhanced missile options",
+      "changes": {
+        "text": "Missiles can be discarded to change one die to unmodifiable 6, reduce opponent die by 1, or contribute to nuclear detonation",
+        "priority": 2
+      }
+    }
+  ]
+}

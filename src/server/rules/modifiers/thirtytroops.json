@@ -1,0 +1,146 @@
+{
+  "pack": "thirtytroops",
+  "name": "Thirty Troops Pack",
+  "description": "Unlocked when someone is about to place 30+ troops on the board and has a missile. Adds massive army bonuses and new territory types.",
+  "modifiers": [
+    {
+      "type": "add_section",
+      "section_id": "special_territories",
+      "description": "Adds special territory types including Alien Island",
+      "data": {
+        "id": "special_territories",
+        "title": "Special Territories",
+        "summary": "Certain territories have unique properties and bonuses",
+        "subsections": {
+          "alien_island": {
+            "title": "Alien Island",
+            "content": "A mysterious island territory with powerful technological benefits.",
+            "rules": [
+              {
+                "id": "special_territories.alien_island.location",
+                "text": "Alien Island is a territory connected to two other territories via sea-lines. It is the 8th island on this board. It is not part of any continent",
+                "priority": 2,
+                "modifiers": ["thirtytroops"],
+                "tags": ["territories", "special", "unlocks"],
+                "applies_to": "all"
+              },
+              {
+                "id": "special_territories.alien_island.tech_bonus",
+                "text": "Controlling Alien Island grants +1 to all dice rolls in combat (attacking or defending)",
+                "priority": 2,
+                "modifiers": ["thirtytroops"],
+                "tags": ["territories", "combat", "special", "unlocks"],
+                "phase": "attack",
+                "applies_to": "controller"
+              },
+              {
+                "id": "special_territories.alien_island.recruitment",
+                "text": "Alien Island counts as +3 population for recruitment purposes",
+                "priority": 2,
+                "modifiers": ["thirtytroops"],
+                "tags": ["territories", "recruit", "special", "unlocks"],
+                "phase": "recruit",
+                "applies_to": "controller"
+              },
+              {
+                "id": "special_territories.alien_island.conquest",
+                "text": "Conquering Alien Island from another player awards 1 Red Star token",
+                "priority": 2,
+                "modifiers": ["thirtytroops"],
+                "tags": ["territories", "victory", "stars", "special", "unlocks"],
+                "phase": "attack",
+                "applies_to": "attacker"
+              }
+            ],
+            "examples": [],
+            "related": ["territories", "combat", "recruit"]
+          },
+          "ruins": {
+            "title": "Ruins",
+            "content": "Destroyed cities leave behind ruins with special properties.",
+            "rules": [
+              {
+                "id": "special_territories.ruins.creation",
+                "text": "When the Alien player destroys a city and replaces it with a ruin, that territory no longer contains a city",
+                "priority": 2,
+                "modifiers": ["thirtytroops"],
+                "tags": ["territories", "cities", "special", "unlocks"],
+                "applies_to": "all"
+              },
+              {
+                "id": "special_territories.ruins.properties",
+                "text": "A ruin cannot be fortified and is not considered a city",
+                "priority": 2,
+                "modifiers": ["thirtytroops"],
+                "tags": ["territories", "cities", "special", "fortification", "unlocks"],
+                "applies_to": "all"
+              },
+              {
+                "id": "special_territories.ruins.rebuild",
+                "text": "You can rebuild a city over a ruin",
+                "priority": 2,
+                "modifiers": ["thirtytroops"],
+                "tags": ["territories", "cities", "special", "unlocks"],
+                "applies_to": "all"
+              }
+            ],
+            "examples": [],
+            "related": ["cities", "territories"]
+          }
+        }
+      }
+    },
+    {
+      "type": "add_subsection",
+      "section_id": "recruit",
+      "subsection_id": "massive_armies",
+      "description": "Adds bonuses for massive army recruitment",
+      "data": {
+        "title": "Massive Army Bonuses",
+        "content": "Players recruiting exceptionally large armies gain additional strategic bonuses.",
+        "rules": [
+          {
+            "id": "recruit.massive_armies.thirty_plus",
+            "text": "When recruiting 30+ troops in a single turn, gain +3 additional troops",
+            "priority": 2,
+            "modifiers": ["thirtytroops"],
+            "tags": ["recruit", "bonus", "unlocks"],
+            "phase": "recruit",
+            "applies_to": "all"
+          },
+          {
+            "id": "recruit.massive_armies.card_draw",
+            "text": "When recruiting 30+ troops, you may draw 1 additional Resource card at end of turn even if you didn't conquer a territory",
+            "priority": 2,
+            "modifiers": ["thirtytroops"],
+            "tags": ["recruit", "cards", "unlocks"],
+            "phase": "draw",
+            "applies_to": "all"
+          }
+        ],
+        "examples": [
+          {
+            "scenario": "Player recruits 32 troops through cards and territories",
+            "explanation": "Player receives 32 + 3 = 35 troops total and can draw an extra card"
+          }
+        ],
+        "related": ["recruit.calculation", "cards.drawing"]
+      }
+    },
+    {
+      "type": "add_rule",
+      "section_id": "combat",
+      "subsection_id": "special_conditions",
+      "description": "Adds overwhelming force bonus",
+      "rule": {
+        "id": "combat.special.overwhelming_force",
+        "text": "When attacking with 10+ troops against 3 or fewer defenders, attacker rolls an additional die (max 4 dice)",
+        "priority": 2,
+        "modifiers": ["thirtytroops"],
+        "tags": ["combat", "dice", "unlocks"],
+        "phase": "attack",
+        "applies_to": "attacker"
+      }
+    }
+  ]
+}
