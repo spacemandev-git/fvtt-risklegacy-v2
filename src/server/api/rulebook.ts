@@ -1,12 +1,6 @@
 // Rulebook API routes
-// Will be implemented in Module 1.2
+// Module 1.2 - Machine-Readable Rulebook
 
-import { Hono } from 'hono';
+import rulebookApi from '../rules/rulebook-api';
 
-const rulebook = new Hono();
-
-rulebook.get('/base', async (c) => {
-  return c.json({ message: 'Not implemented yet (Module 1.2)' }, 501);
-});
-
-export default rulebook;
+export default rulebookApi;

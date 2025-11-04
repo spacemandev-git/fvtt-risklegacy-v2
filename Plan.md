@@ -246,7 +246,7 @@ Tasks:
 ---
 
 ### Module 1.2: Rules Parser & Machine-Readable Rulebook
-**Status**: Not Started
+**Status**: ✅ Complete
 **Dependencies**: 1.1
 **Estimated Context**: Large
 **Priority**: High - Required for lobby rulebook system
@@ -1330,21 +1330,29 @@ Tasks:
   - Build system working (TypeScript + Bun)
   - Dev server tested and operational
   - Basic health check tests passing
+- **Module 1.2: Rules Parser & Machine-Readable Rulebook** ✅
+  - Zod schemas for rulebook structure (`src/server/rules/schemas.ts`)
+  - Complete base rulebook (`src/server/rules/base-rules.json`) with 15 sections, 5 factions, 18 glossary terms
+  - Example rule modifiers for unlock packs (secondwin, minorcities)
+  - Rulebook builder with caching (`src/server/rules/rulebook-builder.ts`)
+  - Complete API endpoints (GET /base, /section/:id, POST /search, GET /packs)
+  - 15 comprehensive integration tests passing
+  - All TypeScript types validated with Zod
 
 ### 🚧 In Progress
 - None
 
 ### ⏭️ Next Module to Implement
-**Module 1.2: Rules Parser & Machine-Readable Rulebook**
-- Status: Not Started ⚠️ HIGH PRIORITY
+**Module 1.3: Database Schema & Setup (Prisma)**
+- Status: Not Started
 - Dependencies: Module 1.1 ✅
-- File: See Phase 1, Module 1.2
-- Next action: Extract rules from rules.pdf and create base-rules.json
+- File: See Phase 1, Module 1.3
+- Next action: Install Prisma and design database schema
 
 ### 📋 Upcoming Modules (In Order)
 1. ✅ Module 1.1: Project Setup
-2. ⏭️ Module 1.2: Rules Parser & Machine-Readable Rulebook ⚠️ HIGH PRIORITY
-3. Module 1.3: Database Schema & Setup (Prisma)
+2. ✅ Module 1.2: Rules Parser & Machine-Readable Rulebook
+3. ⏭️ Module 1.3: Database Schema & Setup (Prisma)
 4. Module 1.4: Asset Loader & Build-Time Conversion
 5. Module 1.5: Board Topology Parser & Territory Data ⚠️ HIGH PRIORITY
 6. Module 2.1: User Authentication API
@@ -1352,16 +1360,16 @@ Tasks:
 ... (see full list in Phase sections below)
 
 ### 📊 Progress Tracking
-- **Phase 1** (Foundation): 1/5 modules complete (20%)
+- **Phase 1** (Foundation): 2/5 modules complete (40%)
 - **Phase 2** (User & Campaign): 0/2 modules complete
 - **Phase 3** (Core Game): 0/8 modules complete (2 deferred to post-MVP)
 - **Phase 4** (Integration): 0/5 modules complete
 - **Phase 5+** (Advanced): Deferred to post-MVP
 
-**Total Progress**: 1/20 MVP modules complete (5%)
+**Total Progress**: 2/20 MVP modules complete (10%)
 
 ### 🎯 Current Sprint Goal
-Complete Phase 1 (Foundation & Infrastructure) - 5 modules (20% complete)
+Complete Phase 1 (Foundation & Infrastructure) - 5 modules (40% complete)
 
 ---
 

@@ -1,0 +1,60 @@
+{
+  "pack": "secondwin",
+  "name": "Second Win Pack",
+  "description": "Unlocked when someone signs the board for the 2nd time. Adds new missions, events, and evolution rules.",
+  "modifiers": [
+    {
+      "type": "add_subsection",
+      "section_id": "missions",
+      "subsection_id": "private_missions",
+      "description": "Adds private mission system",
+      "data": {
+        "title": "Private Missions",
+        "content": "Starting with this game, each player receives a private mission card at game start in addition to their regular mission.",
+        "rules": [
+          {
+            "id": "missions.private.dealing",
+            "text": "Each player receives 1 private mission card at game start",
+            "priority": 2,
+            "tags": ["missions", "setup", "unlocks"],
+            "phase": "setup",
+            "applies_to": "all"
+          },
+          {
+            "id": "missions.private.secret",
+            "text": "Private missions remain secret and separate from regular missions",
+            "priority": 2,
+            "tags": ["missions", "unlocks"],
+            "applies_to": "all"
+          }
+        ],
+        "examples": [],
+        "related": ["missions.general"]
+      }
+    },
+    {
+      "type": "add_rule",
+      "section_id": "recruit",
+      "subsection_id": "calculation",
+      "description": "Cities now provide recruitment bonuses",
+      "rule": {
+        "id": "recruit.evolution.city_bonus",
+        "text": "Cities now provide +1 to recruitment calculation (evolution rule)",
+        "priority": 2,
+        "modifiers": ["secondwin"],
+        "tags": ["recruit", "cities", "evolution", "unlocks"],
+        "phase": "recruit",
+        "applies_to": "all"
+      }
+    },
+    {
+      "type": "modify_rule",
+      "rule_id": "victory.stars.game_win",
+      "description": "Adjusts star awards for winning",
+      "changes": {
+        "text": "Winning a game awards 1-2 stars based on stars already on the board. With evolution, may award more.",
+        "priority": 2
+      }
+    }
+  ]
+}

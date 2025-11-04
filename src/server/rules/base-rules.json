@@ -1,0 +1,1572 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "Risk Legacy Base Rules",
+    "description": "Official rules for Risk Legacy base game",
+    "lastUpdated": "2025-01-04"
+  },
+  "sections": {
+    "overview": {
+      "id": "overview",
+      "title": "Game Overview",
+      "summary": "Risk Legacy is a legacy board game where 3-5 players compete for global domination across multiple games in a campaign.",
+      "subsections": {
+        "objective": {
+          "title": "Game Objective",
+          "content": "Be the first player to earn 4 stars to win the game. Stars persist across the campaign, and the first player to reach 4 stars in any game wins immediately.",
+          "rules": [
+            {
+              "id": "overview.objective.win_condition",
+              "text": "First player to earn 4 stars wins immediately",
+              "priority": 1,
+              "tags": ["victory", "objective"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["victory"]
+        },
+        "components": {
+          "title": "Game Components",
+          "content": "The game includes 5 factions, 42 territories across 6 continents, territory cards, mission cards, event cards, stickers, and various tokens.",
+          "rules": [
+            {
+              "id": "overview.components.player_count",
+              "text": "Risk Legacy is designed for 3-5 players",
+              "priority": 1,
+              "tags": ["setup", "players"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["setup", "factions", "territories"]
+        }
+      }
+    },
+    "setup": {
+      "id": "setup",
+      "title": "Game Setup",
+      "summary": "How to prepare and start a game of Risk Legacy",
+      "subsections": {
+        "turn_order": {
+          "title": "Determining Turn Order",
+          "content": "Turn order is determined by campaign star count. Players with fewer stars choose their faction first and take turns first, creating a catch-up mechanic.",
+          "rules": [
+            {
+              "id": "setup.turn_order.star_based",
+              "text": "Players with fewer stars go first in turn order",
+              "priority": 1,
+              "tags": ["setup", "turn_order", "campaign"],
+              "phase": "setup",
+              "applies_to": "all"
+            },
+            {
+              "id": "setup.turn_order.first_game",
+              "text": "In the first game, turn order is determined randomly",
+              "priority": 1,
+              "tags": ["setup", "turn_order"],
+              "phase": "setup",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [
+            {
+              "scenario": "Player A has 2 stars, Player B has 1 star, Player C has 3 stars",
+              "explanation": "Turn order is: Player B (1 star), Player A (2 stars), Player C (3 stars)"
+            }
+          ],
+          "related": ["victory.stars"]
+        },
+        "faction_selection": {
+          "title": "Faction Selection",
+          "content": "Players choose factions in turn order. Once a faction is chosen, no other player can use it in that game.",
+          "rules": [
+            {
+              "id": "setup.faction.selection_order",
+              "text": "Players select factions in turn order (fewest stars first)",
+              "priority": 1,
+              "tags": ["setup", "factions"],
+              "phase": "setup",
+              "applies_to": "all"
+            },
+            {
+              "id": "setup.faction.uniqueness",
+              "text": "Each faction can only be chosen by one player per game",
+              "priority": 1,
+              "tags": ["setup", "factions"],
+              "phase": "setup",
+              "applies_to": "all"
+            },
+            {
+              "id": "setup.faction.campaign_uniqueness",
+              "text": "Within a campaign, each player should choose a different faction across all games",
+              "priority": 1,
+              "tags": ["setup", "factions", "campaign"],
+              "phase": "setup",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["factions"]
+        },
+        "power_selection": {
+          "title": "Power Card Selection",
+          "content": "After choosing a faction, each player selects one of their faction's two starting power cards. This choice is permanent for the game.",
+          "rules": [
+            {
+              "id": "setup.power.choose_one",
+              "text": "Each player chooses 1 of their faction's 2 starting power cards",
+              "priority": 1,
+              "tags": ["setup", "powers"],
+              "phase": "setup",
+              "applies_to": "all"
+            },
+            {
+              "id": "setup.power.permanent",
+              "text": "Power choice is permanent for the duration of the game",
+              "priority": 1,
+              "tags": ["setup", "powers"],
+              "phase": "setup",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["factions", "powers"]
+        },
+        "initial_placement": {
+          "title": "Initial Troop Placement",
+          "content": "Players take turns placing troops on the board until all starting troops are placed. Each player then places their HQ.",
+          "rules": [
+            {
+              "id": "setup.placement.draft_order",
+              "text": "Players place initial troops in turn order",
+              "priority": 1,
+              "tags": ["setup", "placement"],
+              "phase": "setup",
+              "applies_to": "all"
+            },
+            {
+              "id": "setup.placement.starting_troops",
+              "text": "Each player receives starting troops based on player count",
+              "priority": 1,
+              "tags": ["setup", "placement", "troops"],
+              "phase": "setup",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["territories"]
+        },
+        "hq_placement": {
+          "title": "HQ Placement",
+          "content": "After initial troop placement, each player places their HQ in one of their controlled territories.",
+          "rules": [
+            {
+              "id": "setup.hq.placement",
+              "text": "Each player places their HQ in a controlled territory with no other HQ",
+              "priority": 1,
+              "tags": ["setup", "hq"],
+              "phase": "setup",
+              "applies_to": "all"
+            },
+            {
+              "id": "setup.hq.unique_per_territory",
+              "text": "Only one HQ can exist in a territory",
+              "priority": 1,
+              "tags": ["setup", "hq", "territories"],
+              "phase": "setup",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["hq"]
+        }
+      }
+    },
+    "turn_structure": {
+      "id": "turn_structure",
+      "title": "Turn Structure",
+      "summary": "The sequence of phases in each player's turn",
+      "subsections": {
+        "phases": {
+          "title": "Turn Phases",
+          "content": "Each turn consists of four phases: Recruit, Attack, Maneuver, and Draw. All phases except Attack are optional.",
+          "rules": [
+            {
+              "id": "turn.phases.order",
+              "text": "Turn phases occur in order: 1) Recruit, 2) Attack, 3) Maneuver, 4) Draw",
+              "priority": 1,
+              "tags": ["turn", "phases"],
+              "applies_to": "all"
+            },
+            {
+              "id": "turn.phases.recruit_mandatory",
+              "text": "The Recruit phase is mandatory",
+              "priority": 1,
+              "tags": ["turn", "recruit"],
+              "phase": "recruit",
+              "applies_to": "all"
+            },
+            {
+              "id": "turn.phases.attack_optional",
+              "text": "The Attack phase is optional",
+              "priority": 1,
+              "tags": ["turn", "attack"],
+              "phase": "attack",
+              "applies_to": "all"
+            },
+            {
+              "id": "turn.phases.maneuver_optional",
+              "text": "The Maneuver phase is optional",
+              "priority": 1,
+              "tags": ["turn", "maneuver"],
+              "phase": "maneuver",
+              "applies_to": "all"
+            },
+            {
+              "id": "turn.phases.draw_conditional",
+              "text": "The Draw phase only occurs if at least 1 territory was conquered",
+              "priority": 1,
+              "tags": ["turn", "draw", "cards"],
+              "phase": "draw",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["recruit", "combat", "maneuver", "cards"]
+        }
+      }
+    },
+    "recruit": {
+      "id": "recruit",
+      "title": "Recruit Phase",
+      "summary": "How to recruit and place troops at the start of your turn",
+      "subsections": {
+        "calculation": {
+          "title": "Troop Calculation",
+          "content": "Count your controlled territories plus population (cities), divide by 3, round down. Minimum 3 troops.",
+          "rules": [
+            {
+              "id": "recruit.calculation.formula",
+              "text": "Recruit troops = (territories + population) ÷ 3, rounded down",
+              "priority": 1,
+              "tags": ["recruit", "calculation"],
+              "phase": "recruit",
+              "applies_to": "all"
+            },
+            {
+              "id": "recruit.calculation.minimum",
+              "text": "Minimum recruit is always 3 troops",
+              "priority": 1,
+              "tags": ["recruit", "calculation"],
+              "phase": "recruit",
+              "applies_to": "all"
+            },
+            {
+              "id": "recruit.calculation.population",
+              "text": "Each city provides +1 population for recruitment calculation",
+              "priority": 1,
+              "tags": ["recruit", "cities", "population"],
+              "phase": "recruit",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [
+            {
+              "scenario": "Player controls 10 territories with no cities",
+              "explanation": "Recruit = 10 ÷ 3 = 3.33, rounded down = 3 troops"
+            },
+            {
+              "scenario": "Player controls 8 territories with 1 city",
+              "explanation": "Recruit = (8 + 1) ÷ 3 = 3 troops"
+            },
+            {
+              "scenario": "Player controls 2 territories",
+              "explanation": "Recruit = 2 ÷ 3 = 0.66, but minimum is 3, so recruit 3 troops"
+            }
+          ],
+          "related": ["cities"]
+        },
+        "placement": {
+          "title": "Troop Placement",
+          "content": "Place recruited troops in any controlled territories in any distribution.",
+          "rules": [
+            {
+              "id": "recruit.placement.controlled_only",
+              "text": "Troops can only be placed in territories you control",
+              "priority": 1,
+              "tags": ["recruit", "placement"],
+              "phase": "recruit",
+              "applies_to": "all"
+            },
+            {
+              "id": "recruit.placement.any_distribution",
+              "text": "Troops can be distributed across territories in any way",
+              "priority": 1,
+              "tags": ["recruit", "placement"],
+              "phase": "recruit",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": []
+        },
+        "card_turnin": {
+          "title": "Card Turn-in",
+          "content": "Instead of recruiting normally, you may turn in resource card sets for bonus troops.",
+          "rules": [
+            {
+              "id": "recruit.cards.option",
+              "text": "You may turn in card sets instead of normal recruitment",
+              "priority": 1,
+              "tags": ["recruit", "cards"],
+              "phase": "recruit",
+              "applies_to": "all"
+            },
+            {
+              "id": "recruit.cards.same_territory",
+              "text": "3 cards of the same territory = 4 troops",
+              "priority": 1,
+              "tags": ["recruit", "cards"],
+              "phase": "recruit",
+              "applies_to": "all"
+            },
+            {
+              "id": "recruit.cards.different_continents",
+              "text": "1 card from each of 3 different continents = 8 troops",
+              "priority": 1,
+              "tags": ["recruit", "cards"],
+              "phase": "recruit",
+              "applies_to": "all"
+            },
+            {
+              "id": "recruit.cards.matching_values",
+              "text": "3 or more cards with matching values = 4 × value troops",
+              "priority": 1,
+              "tags": ["recruit", "cards"],
+              "phase": "recruit",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [
+            {
+              "scenario": "Turn in 3 Alaska cards",
+              "explanation": "Receive 4 troops to place in Alaska"
+            },
+            {
+              "scenario": "Turn in 1 North America card, 1 Europe card, 1 Asia card",
+              "explanation": "Receive 8 troops to place anywhere"
+            },
+            {
+              "scenario": "Turn in 3 cards each with value 2",
+              "explanation": "Receive 4 × 2 = 8 troops"
+            }
+          ],
+          "related": ["cards"]
+        }
+      }
+    },
+    "combat": {
+      "id": "combat",
+      "title": "Combat Rules",
+      "summary": "How to attack territories and resolve combat",
+      "subsections": {
+        "attacking": {
+          "title": "Initiating an Attack",
+          "content": "To attack, you must have at least 2 troops in the attacking territory and attack an adjacent enemy territory.",
+          "rules": [
+            {
+              "id": "combat.attacking.minimum_troops",
+              "text": "You must have at least 2 troops in the attacking territory",
+              "priority": 1,
+              "tags": ["combat", "attack"],
+              "phase": "attack",
+              "applies_to": "attacker"
+            },
+            {
+              "id": "combat.attacking.adjacency",
+              "text": "You can only attack adjacent territories",
+              "priority": 1,
+              "tags": ["combat", "attack", "territories"],
+              "phase": "attack",
+              "applies_to": "attacker"
+            },
+            {
+              "id": "combat.attacking.enemy_only",
+              "text": "You can only attack territories controlled by other players",
+              "priority": 1,
+              "tags": ["combat", "attack"],
+              "phase": "attack",
+              "applies_to": "attacker"
+            }
+          ],
+          "examples": [],
+          "related": ["territories.adjacency"]
+        },
+        "dice_rolling": {
+          "title": "Rolling Dice",
+          "content": "Attacker rolls 1-3 dice based on attacking troops. Defender rolls 1-2 dice based on defending troops.",
+          "rules": [
+            {
+              "id": "combat.dice.attacker_rolls",
+              "text": "Attacker rolls 1-3 dice based on attacking troops (max 3)",
+              "priority": 1,
+              "tags": ["combat", "dice", "attacker"],
+              "phase": "attack",
+              "applies_to": "attacker"
+            },
+            {
+              "id": "combat.dice.defender_rolls",
+              "text": "Defender rolls 1-2 dice based on defending troops (max 2)",
+              "priority": 1,
+              "tags": ["combat", "dice", "defender"],
+              "phase": "attack",
+              "applies_to": "defender"
+            },
+            {
+              "id": "combat.dice.attacker_dice_count",
+              "text": "Attacker rolls 1 die per troop, up to 3 dice maximum",
+              "priority": 1,
+              "tags": ["combat", "dice", "attacker"],
+              "phase": "attack",
+              "applies_to": "attacker"
+            },
+            {
+              "id": "combat.dice.defender_dice_count",
+              "text": "Defender rolls 1 die per troop, up to 2 dice maximum",
+              "priority": 1,
+              "tags": ["combat", "dice", "defender"],
+              "phase": "attack",
+              "applies_to": "defender"
+            }
+          ],
+          "examples": [
+            {
+              "scenario": "Attacker has 5 troops, defender has 3 troops",
+              "explanation": "Attacker rolls 3 dice (max), defender rolls 2 dice (max)"
+            },
+            {
+              "scenario": "Attacker has 2 troops, defender has 1 troop",
+              "explanation": "Attacker rolls 1 die (must leave 1 troop), defender rolls 1 die"
+            }
+          ],
+          "related": []
+        },
+        "resolution": {
+          "title": "Combat Resolution",
+          "content": "Compare highest dice. If both have 2+ dice, also compare second highest. Ties go to defender.",
+          "rules": [
+            {
+              "id": "combat.resolution.highest_comparison",
+              "text": "Compare the highest die from each side",
+              "priority": 1,
+              "tags": ["combat", "resolution"],
+              "phase": "attack",
+              "applies_to": "all"
+            },
+            {
+              "id": "combat.resolution.second_comparison",
+              "text": "If both rolled 2+ dice, also compare the second highest dice",
+              "priority": 1,
+              "tags": ["combat", "resolution"],
+              "phase": "attack",
+              "applies_to": "all"
+            },
+            {
+              "id": "combat.resolution.ties_to_defender",
+              "text": "Ties go to the defender",
+              "priority": 1,
+              "tags": ["combat", "resolution"],
+              "phase": "attack",
+              "applies_to": "all"
+            },
+            {
+              "id": "combat.resolution.casualties",
+              "text": "Loser of each comparison removes 1 troop",
+              "priority": 1,
+              "tags": ["combat", "resolution", "casualties"],
+              "phase": "attack",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [
+            {
+              "scenario": "Attacker rolls [6, 4, 2], Defender rolls [5, 3]",
+              "explanation": "Compare 6 vs 5 (attacker wins), 4 vs 3 (attacker wins). Defender loses 2 troops."
+            },
+            {
+              "scenario": "Attacker rolls [5, 3], Defender rolls [5, 2]",
+              "explanation": "Compare 5 vs 5 (tie, defender wins), 3 vs 2 (attacker wins). Each loses 1 troop."
+            }
+          ],
+          "related": []
+        },
+        "fortification": {
+          "title": "Fortification Bonus",
+          "content": "Fortified territories provide a defensive bonus in combat.",
+          "rules": [
+            {
+              "id": "combat.fortification.bonus",
+              "text": "Fortified territories add +1 to the defender's highest die",
+              "priority": 1,
+              "tags": ["combat", "fortification", "defender"],
+              "phase": "attack",
+              "applies_to": "defender"
+            },
+            {
+              "id": "combat.fortification.hq_always_fortified",
+              "text": "Territories with HQs are always fortified",
+              "priority": 1,
+              "tags": ["combat", "fortification", "hq"],
+              "phase": "attack",
+              "applies_to": "defender"
+            }
+          ],
+          "examples": [
+            {
+              "scenario": "Defender in fortified territory rolls [4, 2]",
+              "explanation": "Highest die becomes 5 (4+1 fortification bonus)"
+            }
+          ],
+          "related": ["hq"]
+        },
+        "conquest": {
+          "title": "Conquering Territory",
+          "content": "When all defending troops are eliminated, the attacker conquers the territory.",
+          "rules": [
+            {
+              "id": "combat.conquest.condition",
+              "text": "Territory is conquered when all defending troops are eliminated",
+              "priority": 1,
+              "tags": ["combat", "conquest"],
+              "phase": "attack",
+              "applies_to": "attacker"
+            },
+            {
+              "id": "combat.conquest.troop_movement",
+              "text": "Attacker must move at least as many troops as dice rolled into conquered territory",
+              "priority": 1,
+              "tags": ["combat", "conquest", "troops"],
+              "phase": "attack",
+              "applies_to": "attacker"
+            },
+            {
+              "id": "combat.conquest.hq_star",
+              "text": "Conquering a territory with an HQ awards the attacker 1 star",
+              "priority": 1,
+              "tags": ["combat", "conquest", "hq", "stars"],
+              "phase": "attack",
+              "applies_to": "attacker"
+            }
+          ],
+          "examples": [],
+          "related": ["hq", "victory.stars"]
+        },
+        "missiles": {
+          "title": "Missile Usage",
+          "content": "Missiles can be used once per game to modify a single die result in combat.",
+          "rules": [
+            {
+              "id": "combat.missiles.usage",
+              "text": "Missiles can be used to modify a single die by ±1",
+              "priority": 1,
+              "tags": ["combat", "missiles"],
+              "phase": "attack",
+              "applies_to": "all"
+            },
+            {
+              "id": "combat.missiles.one_per_game",
+              "text": "Each missile can only be used once per game",
+              "priority": 1,
+              "tags": ["combat", "missiles"],
+              "phase": "attack",
+              "applies_to": "all"
+            },
+            {
+              "id": "combat.missiles.permanent",
+              "text": "Used missiles are placed on the board permanently",
+              "priority": 1,
+              "tags": ["combat", "missiles", "legacy"],
+              "phase": "attack",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [
+            {
+              "scenario": "Attacker rolls a 5 and uses a missile",
+              "explanation": "Die result can become 4 or 6"
+            }
+          ],
+          "related": []
+        },
+        "special_conditions": {
+          "title": "Special Combat Conditions",
+          "content": "Certain dice combinations trigger special effects.",
+          "rules": [
+            {
+              "id": "combat.special.natural_sixes",
+              "text": "Natural 6s may trigger faction-specific effects",
+              "priority": 1,
+              "tags": ["combat", "special", "dice"],
+              "phase": "attack",
+              "applies_to": "all"
+            },
+            {
+              "id": "combat.special.three_of_a_kind",
+              "text": "Three-of-a-kind may trigger faction-specific effects",
+              "priority": 1,
+              "tags": ["combat", "special", "dice"],
+              "phase": "attack",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["factions"]
+        }
+      }
+    },
+    "maneuver": {
+      "id": "maneuver",
+      "title": "Maneuver Phase",
+      "summary": "How to move troops between your territories at the end of your turn",
+      "subsections": {
+        "movement": {
+          "title": "Moving Troops",
+          "content": "Once per turn, you may move troops between connected friendly territories.",
+          "rules": [
+            {
+              "id": "maneuver.movement.once_per_turn",
+              "text": "You may maneuver once per turn",
+              "priority": 1,
+              "tags": ["maneuver", "movement"],
+              "phase": "maneuver",
+              "applies_to": "all"
+            },
+            {
+              "id": "maneuver.movement.connected_territories",
+              "text": "Troops can only move between connected friendly territories",
+              "priority": 1,
+              "tags": ["maneuver", "movement", "territories"],
+              "phase": "maneuver",
+              "applies_to": "all"
+            },
+            {
+              "id": "maneuver.movement.minimum_troops",
+              "text": "You must leave at least 1 troop in the source territory",
+              "priority": 1,
+              "tags": ["maneuver", "movement", "troops"],
+              "phase": "maneuver",
+              "applies_to": "all"
+            },
+            {
+              "id": "maneuver.movement.timing",
+              "text": "Maneuver occurs at the end of your turn, after combat",
+              "priority": 1,
+              "tags": ["maneuver", "timing"],
+              "phase": "maneuver",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [
+            {
+              "scenario": "You control Alaska (5 troops) and Alberta (2 troops), which are connected",
+              "explanation": "You can move up to 4 troops from Alaska to Alberta (must leave 1)"
+            }
+          ],
+          "related": ["territories"]
+        }
+      }
+    },
+    "cards": {
+      "id": "cards",
+      "title": "Card System",
+      "summary": "Territory cards, coin cards, and how to use them",
+      "subsections": {
+        "drawing": {
+          "title": "Drawing Cards",
+          "content": "Draw cards at the end of your turn if you conquered at least one territory.",
+          "rules": [
+            {
+              "id": "cards.drawing.territory_card",
+              "text": "Draw 1 territory card if you conquered at least 1 territory this turn",
+              "priority": 1,
+              "tags": ["cards", "draw"],
+              "phase": "draw",
+              "applies_to": "all"
+            },
+            {
+              "id": "cards.drawing.coin_card",
+              "text": "Draw 1 coin card if you conquered 4 or more territories this turn",
+              "priority": 1,
+              "tags": ["cards", "draw", "coin"],
+              "phase": "draw",
+              "applies_to": "all"
+            },
+            {
+              "id": "cards.drawing.end_of_turn",
+              "text": "Cards are drawn at the end of your turn",
+              "priority": 1,
+              "tags": ["cards", "draw", "timing"],
+              "phase": "draw",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["recruit.card_turnin"]
+        },
+        "territory_cards": {
+          "title": "Territory Cards",
+          "content": "Cards representing territories on the board with resource values.",
+          "rules": [
+            {
+              "id": "cards.territory.starting_value",
+              "text": "Territory cards start with a resource value of 1",
+              "priority": 1,
+              "tags": ["cards", "territory", "resources"],
+              "applies_to": "all"
+            },
+            {
+              "id": "cards.territory.max_value",
+              "text": "Territory cards can be upgraded to a maximum value of 4",
+              "priority": 1,
+              "tags": ["cards", "territory", "resources"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": []
+        },
+        "coin_cards": {
+          "title": "Coin Cards",
+          "content": "Special cards that provide recruitment bonuses.",
+          "rules": [
+            {
+              "id": "cards.coin.total_count",
+              "text": "There are 10 coin cards in the deck",
+              "priority": 1,
+              "tags": ["cards", "coin"],
+              "applies_to": "all"
+            },
+            {
+              "id": "cards.coin.usage",
+              "text": "Coin cards are used during recruitment for bonus troops",
+              "priority": 1,
+              "tags": ["cards", "coin", "recruit"],
+              "phase": "recruit",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["recruit.card_turnin"]
+        }
+      }
+    },
+    "victory": {
+      "id": "victory",
+      "title": "Victory Conditions",
+      "summary": "How to earn stars and win the game",
+      "subsections": {
+        "stars": {
+          "title": "Star Acquisition",
+          "content": "Stars are earned through various achievements and persist across the campaign.",
+          "rules": [
+            {
+              "id": "victory.stars.win_condition",
+              "text": "First player to earn 4 stars wins immediately",
+              "priority": 1,
+              "tags": ["victory", "stars"],
+              "applies_to": "all"
+            },
+            {
+              "id": "victory.stars.hq_conquest",
+              "text": "Conquering a territory with an HQ awards 1 star",
+              "priority": 1,
+              "tags": ["victory", "stars", "hq"],
+              "phase": "attack",
+              "applies_to": "attacker"
+            },
+            {
+              "id": "victory.stars.mission_completion",
+              "text": "Completing a mission card awards 1 star",
+              "priority": 1,
+              "tags": ["victory", "stars", "missions"],
+              "applies_to": "all"
+            },
+            {
+              "id": "victory.stars.red_stars",
+              "text": "Controlling territories with 10+ red stars awards 1 star at end of turn",
+              "priority": 1,
+              "tags": ["victory", "stars", "territories"],
+              "applies_to": "all"
+            },
+            {
+              "id": "victory.stars.game_win",
+              "text": "Winning a game awards 1-2 stars based on stars already on the board",
+              "priority": 1,
+              "tags": ["victory", "stars", "campaign"],
+              "applies_to": "winner"
+            },
+            {
+              "id": "victory.stars.persistence",
+              "text": "Stars persist across all games in a campaign",
+              "priority": 1,
+              "tags": ["victory", "stars", "campaign"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["hq", "missions"]
+        },
+        "immediate_victory": {
+          "title": "Immediate Victory",
+          "content": "The game ends immediately when a player earns their 4th star.",
+          "rules": [
+            {
+              "id": "victory.immediate.trigger",
+              "text": "Game ends immediately when any player reaches 4 stars",
+              "priority": 1,
+              "tags": ["victory", "endgame"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": []
+        }
+      }
+    },
+    "hq": {
+      "id": "hq",
+      "title": "Headquarters (HQ)",
+      "summary": "Special HQ markers and their rules",
+      "subsections": {
+        "properties": {
+          "title": "HQ Properties",
+          "content": "HQs provide combat bonuses and are worth stars when conquered.",
+          "rules": [
+            {
+              "id": "hq.properties.combat_value",
+              "text": "HQ counts as 1 troop for combat purposes",
+              "priority": 1,
+              "tags": ["hq", "combat"],
+              "phase": "attack",
+              "applies_to": "all"
+            },
+            {
+              "id": "hq.properties.fortified",
+              "text": "Territories with HQs are always fortified",
+              "priority": 1,
+              "tags": ["hq", "fortification"],
+              "phase": "attack",
+              "applies_to": "defender"
+            },
+            {
+              "id": "hq.properties.star_award",
+              "text": "Conquering an HQ awards the attacker 1 star",
+              "priority": 1,
+              "tags": ["hq", "stars", "conquest"],
+              "phase": "attack",
+              "applies_to": "attacker"
+            }
+          ],
+          "examples": [],
+          "related": ["combat.fortification", "victory.stars"]
+        },
+        "placement": {
+          "title": "HQ Placement and Movement",
+          "content": "Rules for where and when HQs can be placed.",
+          "rules": [
+            {
+              "id": "hq.placement.initial",
+              "text": "HQs are placed during initial setup in a controlled territory",
+              "priority": 1,
+              "tags": ["hq", "setup"],
+              "phase": "setup",
+              "applies_to": "all"
+            },
+            {
+              "id": "hq.placement.relocation",
+              "text": "HQs can be relocated to any controlled territory with no other HQ",
+              "priority": 1,
+              "tags": ["hq", "placement"],
+              "applies_to": "all"
+            },
+            {
+              "id": "hq.placement.conquered",
+              "text": "When an HQ is conquered, it returns to the owning player to be placed again",
+              "priority": 1,
+              "tags": ["hq", "conquest"],
+              "phase": "attack",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": []
+        }
+      }
+    },
+    "cities": {
+      "id": "cities",
+      "title": "Cities",
+      "summary": "Minor cities and world capital mechanics",
+      "subsections": {
+        "minor_cities": {
+          "title": "Minor Cities",
+          "content": "Cities provide population bonuses for recruitment.",
+          "rules": [
+            {
+              "id": "cities.minor.population_bonus",
+              "text": "Each minor city provides +1 population for recruitment calculation",
+              "priority": 1,
+              "tags": ["cities", "recruit", "population"],
+              "phase": "recruit",
+              "applies_to": "all"
+            },
+            {
+              "id": "cities.minor.total_count",
+              "text": "There are 9 minor cities that can be founded",
+              "priority": 1,
+              "tags": ["cities", "legacy"],
+              "applies_to": "all"
+            },
+            {
+              "id": "cities.minor.founding",
+              "text": "Cities are founded by placing city stickers on territories",
+              "priority": 1,
+              "tags": ["cities", "stickers", "legacy"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["recruit.calculation"]
+        },
+        "world_capital": {
+          "title": "World Capital",
+          "content": "The special world capital city provides continent-wide bonuses.",
+          "rules": [
+            {
+              "id": "cities.capital.bonus",
+              "text": "The world capital provides +1 to all resource cards in its continent",
+              "priority": 1,
+              "tags": ["cities", "capital", "resources"],
+              "applies_to": "all"
+            },
+            {
+              "id": "cities.capital.unique",
+              "text": "Only 1 world capital can be founded",
+              "priority": 1,
+              "tags": ["cities", "capital", "legacy"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["cards.territory_cards"]
+        }
+      }
+    },
+    "missions": {
+      "id": "missions",
+      "title": "Mission Cards",
+      "summary": "Secret objectives that award stars",
+      "subsections": {
+        "general": {
+          "title": "Mission Mechanics",
+          "content": "Missions are secret objectives that players work toward during the game.",
+          "rules": [
+            {
+              "id": "missions.general.dealing",
+              "text": "Mission cards are dealt at the start of the game and kept secret",
+              "priority": 1,
+              "tags": ["missions", "setup"],
+              "phase": "setup",
+              "applies_to": "all"
+            },
+            {
+              "id": "missions.general.star_award",
+              "text": "Completing a mission awards 1 star",
+              "priority": 1,
+              "tags": ["missions", "stars", "victory"],
+              "applies_to": "all"
+            },
+            {
+              "id": "missions.general.discard",
+              "text": "You may discard your mission once per game to draw a new one",
+              "priority": 1,
+              "tags": ["missions"],
+              "applies_to": "all"
+            },
+            {
+              "id": "missions.general.claiming",
+              "text": "You must claim mission completion to receive the star",
+              "priority": 1,
+              "tags": ["missions", "stars"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["victory.stars"]
+        }
+      }
+    },
+    "territories": {
+      "id": "territories",
+      "title": "Territories and Continents",
+      "summary": "The game board and territory connections",
+      "subsections": {
+        "continents": {
+          "title": "Continents",
+          "content": "The 42 territories are organized into 6 continents.",
+          "rules": [
+            {
+              "id": "territories.continents.north_america",
+              "text": "North America contains 9 territories",
+              "priority": 1,
+              "tags": ["territories", "continents"],
+              "applies_to": "all"
+            },
+            {
+              "id": "territories.continents.south_america",
+              "text": "South America contains 4 territories",
+              "priority": 1,
+              "tags": ["territories", "continents"],
+              "applies_to": "all"
+            },
+            {
+              "id": "territories.continents.europe",
+              "text": "Europe contains 7 territories",
+              "priority": 1,
+              "tags": ["territories", "continents"],
+              "applies_to": "all"
+            },
+            {
+              "id": "territories.continents.africa",
+              "text": "Africa contains 6 territories",
+              "priority": 1,
+              "tags": ["territories", "continents"],
+              "applies_to": "all"
+            },
+            {
+              "id": "territories.continents.asia",
+              "text": "Asia contains 12 territories",
+              "priority": 1,
+              "tags": ["territories", "continents"],
+              "applies_to": "all"
+            },
+            {
+              "id": "territories.continents.australia",
+              "text": "Australia contains 4 territories",
+              "priority": 1,
+              "tags": ["territories", "continents"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": []
+        },
+        "adjacency": {
+          "title": "Territory Adjacency",
+          "content": "Territories are connected to adjacent territories for attack and maneuver purposes.",
+          "rules": [
+            {
+              "id": "territories.adjacency.attack_requirement",
+              "text": "You can only attack adjacent territories",
+              "priority": 1,
+              "tags": ["territories", "adjacency", "combat"],
+              "phase": "attack",
+              "applies_to": "all"
+            },
+            {
+              "id": "territories.adjacency.maneuver_requirement",
+              "text": "You can only maneuver through connected friendly territories",
+              "priority": 1,
+              "tags": ["territories", "adjacency", "maneuver"],
+              "phase": "maneuver",
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["combat.attacking", "maneuver.movement"]
+        },
+        "red_stars": {
+          "title": "Red Star Territories",
+          "content": "Special territories marked with red stars for victory conditions.",
+          "rules": [
+            {
+              "id": "territories.red_stars.total",
+              "text": "There are 10 territories marked with red stars on the board",
+              "priority": 1,
+              "tags": ["territories", "stars", "victory"],
+              "applies_to": "all"
+            },
+            {
+              "id": "territories.red_stars.victory",
+              "text": "Controlling 10+ red stars at end of turn awards 1 star",
+              "priority": 1,
+              "tags": ["territories", "stars", "victory"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["victory.stars"]
+        }
+      }
+    },
+    "legacy": {
+      "id": "legacy",
+      "title": "Legacy Mechanics",
+      "summary": "Permanent modifications to the game",
+      "subsections": {
+        "campaign": {
+          "title": "Campaign Persistence",
+          "content": "Changes made during games persist across the entire campaign.",
+          "rules": [
+            {
+              "id": "legacy.campaign.board_signatures",
+              "text": "Winners sign the board after each game",
+              "priority": 1,
+              "tags": ["legacy", "endgame", "campaign"],
+              "applies_to": "winner"
+            },
+            {
+              "id": "legacy.campaign.stickers",
+              "text": "Stickers placed on the board are permanent",
+              "priority": 1,
+              "tags": ["legacy", "stickers", "campaign"],
+              "applies_to": "all"
+            },
+            {
+              "id": "legacy.campaign.scars",
+              "text": "Scars added to factions persist across all future games",
+              "priority": 1,
+              "tags": ["legacy", "scars", "campaign"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["unlocks"]
+        },
+        "stickers": {
+          "title": "Sticker System",
+          "content": "Various stickers permanently modify the game.",
+          "rules": [
+            {
+              "id": "legacy.stickers.cities",
+              "text": "City stickers found cities on territories",
+              "priority": 1,
+              "tags": ["legacy", "stickers", "cities"],
+              "applies_to": "all"
+            },
+            {
+              "id": "legacy.stickers.resource_value",
+              "text": "Resource value stickers increase territory card values",
+              "priority": 1,
+              "tags": ["legacy", "stickers", "resources"],
+              "applies_to": "all"
+            },
+            {
+              "id": "legacy.stickers.naming",
+              "text": "Territory name stickers allow renaming territories",
+              "priority": 1,
+              "tags": ["legacy", "stickers", "territories"],
+              "applies_to": "all"
+            },
+            {
+              "id": "legacy.stickers.victory",
+              "text": "Victory stickers provide bonuses to the winner's faction in that territory",
+              "priority": 1,
+              "tags": ["legacy", "stickers", "endgame"],
+              "applies_to": "winner"
+            }
+          ],
+          "examples": [],
+          "related": ["cities", "endgame"]
+        },
+        "scars": {
+          "title": "Scar System",
+          "content": "Negative permanent modifications to factions.",
+          "rules": [
+            {
+              "id": "legacy.scars.application",
+              "text": "Players add scars to factions at the end of each game",
+              "priority": 1,
+              "tags": ["legacy", "scars", "endgame"],
+              "applies_to": "all"
+            },
+            {
+              "id": "legacy.scars.effects",
+              "text": "Scars apply negative effects to factions in future games",
+              "priority": 1,
+              "tags": ["legacy", "scars", "campaign"],
+              "applies_to": "all"
+            },
+            {
+              "id": "legacy.scars.no_duplicates",
+              "text": "Each faction can only have one of each scar type",
+              "priority": 1,
+              "tags": ["legacy", "scars"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["factions"]
+        }
+      }
+    },
+    "unlocks": {
+      "id": "unlocks",
+      "title": "Unlock Packs",
+      "summary": "New content unlocked during the campaign",
+      "subsections": {
+        "conditions": {
+          "title": "Unlock Conditions",
+          "content": "Packs open when specific conditions are met during the campaign.",
+          "rules": [
+            {
+              "id": "unlocks.conditions.second_win",
+              "text": "Second Win pack opens when someone signs the board for the 2nd time",
+              "priority": 1,
+              "tags": ["unlocks", "campaign"],
+              "applies_to": "all"
+            },
+            {
+              "id": "unlocks.conditions.world_capital",
+              "text": "World Capital pack opens when the world capital is founded",
+              "priority": 1,
+              "tags": ["unlocks", "campaign", "cities"],
+              "applies_to": "all"
+            },
+            {
+              "id": "unlocks.conditions.minor_cities",
+              "text": "Minor Cities pack opens when all 9 minor cities are founded",
+              "priority": 1,
+              "tags": ["unlocks", "campaign", "cities"],
+              "applies_to": "all"
+            },
+            {
+              "id": "unlocks.conditions.eliminated",
+              "text": "Eliminated pack opens when a faction is eliminated from a game",
+              "priority": 1,
+              "tags": ["unlocks", "campaign"],
+              "applies_to": "all"
+            },
+            {
+              "id": "unlocks.conditions.thirty_troops",
+              "text": "Thirty Troops pack opens when a player places 30+ troops in one turn and has a missile",
+              "priority": 1,
+              "tags": ["unlocks", "campaign"],
+              "applies_to": "all"
+            },
+            {
+              "id": "unlocks.conditions.three_missiles",
+              "text": "Three Missiles pack opens when 3 missiles are used on the same combat roll",
+              "priority": 1,
+              "tags": ["unlocks", "campaign", "combat"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["legacy.campaign"]
+        },
+        "content": {
+          "title": "Unlock Pack Contents",
+          "content": "Each pack contains new powers, missions, events, rules, and stickers.",
+          "rules": [
+            {
+              "id": "unlocks.content.powers",
+              "text": "Unlock packs add new faction powers",
+              "priority": 1,
+              "tags": ["unlocks", "powers", "factions"],
+              "applies_to": "all"
+            },
+            {
+              "id": "unlocks.content.missions",
+              "text": "Unlock packs add new mission cards",
+              "priority": 1,
+              "tags": ["unlocks", "missions"],
+              "applies_to": "all"
+            },
+            {
+              "id": "unlocks.content.events",
+              "text": "Unlock packs add new event cards",
+              "priority": 1,
+              "tags": ["unlocks", "events"],
+              "applies_to": "all"
+            },
+            {
+              "id": "unlocks.content.rules",
+              "text": "Unlock packs can modify or add new game rules",
+              "priority": 1,
+              "tags": ["unlocks", "rules"],
+              "applies_to": "all"
+            },
+            {
+              "id": "unlocks.content.stickers",
+              "text": "Unlock packs add new sticker types",
+              "priority": 1,
+              "tags": ["unlocks", "stickers", "legacy"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": []
+        }
+      }
+    },
+    "endgame": {
+      "id": "endgame",
+      "title": "End Game Phase",
+      "summary": "What happens when a player wins",
+      "subsections": {
+        "winner_actions": {
+          "title": "Winner Actions",
+          "content": "The winner performs special actions that permanently modify the game.",
+          "rules": [
+            {
+              "id": "endgame.winner.sign_board",
+              "text": "Winner signs the board with their name and date",
+              "priority": 1,
+              "tags": ["endgame", "legacy"],
+              "applies_to": "winner"
+            },
+            {
+              "id": "endgame.winner.victory_sticker",
+              "text": "Winner places a victory sticker on a territory",
+              "priority": 1,
+              "tags": ["endgame", "stickers", "legacy"],
+              "applies_to": "winner"
+            },
+            {
+              "id": "endgame.winner.stars",
+              "text": "Winner receives 1-2 stars based on stars already on the board",
+              "priority": 1,
+              "tags": ["endgame", "stars", "victory"],
+              "applies_to": "winner"
+            }
+          ],
+          "examples": [],
+          "related": ["victory.stars", "legacy.stickers"]
+        },
+        "all_players": {
+          "title": "All Player Actions",
+          "content": "All players can contribute to faction scars.",
+          "rules": [
+            {
+              "id": "endgame.all_players.scars",
+              "text": "All players can add scars to factions at game end",
+              "priority": 1,
+              "tags": ["endgame", "scars", "legacy"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["legacy.scars"]
+        },
+        "unlock_check": {
+          "title": "Unlock Conditions Check",
+          "content": "Check if any unlock conditions were met during the game.",
+          "rules": [
+            {
+              "id": "endgame.unlocks.check",
+              "text": "Check all unlock conditions at the end of each game",
+              "priority": 1,
+              "tags": ["endgame", "unlocks"],
+              "applies_to": "all"
+            },
+            {
+              "id": "endgame.unlocks.open",
+              "text": "Open any triggered unlock packs and integrate their contents",
+              "priority": 1,
+              "tags": ["endgame", "unlocks", "campaign"],
+              "applies_to": "all"
+            }
+          ],
+          "examples": [],
+          "related": ["unlocks"]
+        }
+      }
+    }
+  },
+  "factions": {
+    "imperial_balkania": {
+      "id": "imperial_balkania",
+      "name": "Imperial Balkania",
+      "description": "Focus on recruitment and expansion bonuses",
+      "starting_powers": [
+        {
+          "id": "balkania_1",
+          "text": "Round up when dividing territories by 3 during recruitment",
+          "trigger": "recruit_phase"
+        },
+        {
+          "id": "balkania_2",
+          "text": "Draw a coin card when expanding by 4+ territories without conquest",
+          "trigger": "end_turn"
+        }
+      ],
+      "strategy_notes": "Best for players who like building large armies and aggressive expansion"
+    },
+    "enclave_of_the_bear": {
+      "id": "enclave_of_the_bear",
+      "name": "Enclave of the Bear",
+      "description": "Focus on attack bonuses and combat advantages",
+      "starting_powers": [
+        {
+          "id": "enclave_1",
+          "text": "Defender rolls -1 die on your first attack each turn (minimum 1 die)",
+          "trigger": "first_attack"
+        },
+        {
+          "id": "enclave_2",
+          "text": "Rolling three-of-a-kind automatically conquers the territory",
+          "trigger": "combat_roll"
+        }
+      ],
+      "strategy_notes": "Best for aggressive players who enjoy combat and conquering territories"
+    },
+    "khan_industries": {
+      "id": "khan_industries",
+      "name": "Khan Industries",
+      "description": "Focus on HQ bonuses and steady troop generation",
+      "starting_powers": [
+        {
+          "id": "khan_1",
+          "text": "Place 1 troop in your HQ territory at the start of your turn",
+          "trigger": "turn_start"
+        },
+        {
+          "id": "khan_2",
+          "text": "Place 1 troop in your HQ territory when drawing a territory card",
+          "trigger": "draw_card"
+        }
+      ],
+      "strategy_notes": "Best for defensive players who like fortifying key positions"
+    },
+    "die_mechaniker": {
+      "id": "die_mechaniker",
+      "name": "Die Mechaniker",
+      "description": "Focus on defense and fortification bonuses",
+      "starting_powers": [
+        {
+          "id": "mechaniker_1",
+          "text": "Your starting HQ territory is always fortified",
+          "trigger": "passive"
+        },
+        {
+          "id": "mechaniker_2",
+          "text": "Rolling double 6s allows you to place a fortification token on the territory",
+          "trigger": "combat_roll"
+        }
+      ],
+      "strategy_notes": "Best for defensive players who like holding key territories"
+    },
+    "saharan_republic": {
+      "id": "saharan_republic",
+      "name": "Saharan Republic",
+      "description": "Focus on maneuver flexibility and mobility",
+      "starting_powers": [
+        {
+          "id": "saharan_1",
+          "text": "You may maneuver at any time during your turn, not just at the end",
+          "trigger": "maneuver_phase"
+        },
+        {
+          "id": "saharan_2",
+          "text": "You may maneuver troops between any of your territories, not just connected ones",
+          "trigger": "maneuver_phase"
+        }
+      ],
+      "strategy_notes": "Best for tactical players who like repositioning and strategic flexibility"
+    }
+  },
+  "glossary": [
+    {
+      "term": "HQ (Headquarters)",
+      "definition": "A special marker that counts as 1 troop, makes the territory fortified, and awards 1 star when conquered",
+      "related": ["hq", "combat.fortification", "victory.stars"]
+    },
+    {
+      "term": "Fortified",
+      "definition": "A territory with a defensive bonus that adds +1 to the defender's highest die roll",
+      "related": ["combat.fortification", "hq"]
+    },
+    {
+      "term": "Conquest",
+      "definition": "Successfully defeating all troops in an enemy territory and taking control of it",
+      "related": ["combat.conquest"]
+    },
+    {
+      "term": "Resource Card",
+      "definition": "Territory cards with resource values used for recruiting troops",
+      "related": ["cards.territory_cards", "recruit.card_turnin"]
+    },
+    {
+      "term": "Star",
+      "definition": "Victory points that persist across games in a campaign. First to 4 stars wins.",
+      "related": ["victory.stars"]
+    },
+    {
+      "term": "Missile",
+      "definition": "A one-time use item that modifies a single combat die by ±1",
+      "related": ["combat.missiles"]
+    },
+    {
+      "term": "Population",
+      "definition": "A value provided by cities that increases troop recruitment",
+      "related": ["cities", "recruit.calculation"]
+    },
+    {
+      "term": "Red Star",
+      "definition": "Markers on 10 territories. Controlling 10+ red stars awards 1 star at end of turn.",
+      "related": ["territories.red_stars", "victory.stars"]
+    },
+    {
+      "term": "Scar",
+      "definition": "A permanent negative modification to a faction",
+      "related": ["legacy.scars"]
+    },
+    {
+      "term": "Sticker",
+      "definition": "A permanent modification placed on the board, cards, or faction sheets",
+      "related": ["legacy.stickers"]
+    },
+    {
+      "term": "Mission",
+      "definition": "A secret objective that awards 1 star when completed",
+      "related": ["missions"]
+    },
+    {
+      "term": "Campaign",
+      "definition": "A series of connected games where changes persist between games",
+      "related": ["legacy.campaign"]
+    },
+    {
+      "term": "Unlock Pack",
+      "definition": "New content opened when specific conditions are met during the campaign",
+      "related": ["unlocks"]
+    },
+    {
+      "term": "City",
+      "definition": "A sticker placed on a territory that provides +1 population for recruitment",
+      "related": ["cities"]
+    },
+    {
+      "term": "World Capital",
+      "definition": "A special city that provides +1 to all resource cards in its continent",
+      "related": ["cities.world_capital"]
+    },
+    {
+      "term": "Coin Card",
+      "definition": "A special card drawn when conquering 4+ territories in a turn",
+      "related": ["cards.coin_cards"]
+    },
+    {
+      "term": "Adjacent",
+      "definition": "Territories that share a border and can be attacked or maneuvered between",
+      "related": ["territories.adjacency"]
+    },
+    {
+      "term": "Connected",
+      "definition": "A path of friendly territories for maneuver purposes",
+      "related": ["maneuver.movement"]
+    }
+  ]
+}

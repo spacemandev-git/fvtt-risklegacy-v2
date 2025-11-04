@@ -1,0 +1,59 @@
+{
+  "pack": "minorcities",
+  "name": "Minor Cities Pack",
+  "description": "Unlocked when all 9 minor cities are founded. Adds draft system and enhanced city mechanics.",
+  "modifiers": [
+    {
+      "type": "add_section",
+      "section_id": "draft",
+      "description": "Adds territory draft system",
+      "data": {
+        "id": "draft",
+        "title": "Territory Draft",
+        "summary": "Players draft starting territories instead of placing troops one at a time",
+        "subsections": {
+          "draft_system": {
+            "title": "Draft System",
+            "content": "At game start, players draft territories in turn order until all starting territories are claimed.",
+            "rules": [
+              {
+                "id": "draft.system.turn_order",
+                "text": "Players draft territories in turn order (fewest stars first)",
+                "priority": 2,
+                "modifiers": ["minorcities"],
+                "tags": ["draft", "setup", "unlocks"],
+                "phase": "setup",
+                "applies_to": "all"
+              },
+              {
+                "id": "draft.system.snake_draft",
+                "text": "Use snake draft: 1st→last, then last→1st, repeating",
+                "priority": 2,
+                "modifiers": ["minorcities"],
+                "tags": ["draft", "setup", "unlocks"],
+                "phase": "setup",
+                "applies_to": "all"
+              }
+            ],
+            "examples": [
+              {
+                "scenario": "3 player game draft order",
+                "explanation": "Player A → B → C → C → B → A → A → B → C, etc."
+              }
+            ],
+            "related": ["setup"]
+          }
+        }
+      }
+    },
+    {
+      "type": "modify_rule",
+      "rule_id": "cities.minor.population_bonus",
+      "description": "Enhanced city bonuses",
+      "changes": {
+        "text": "Each minor city provides +1 population for recruitment and may provide additional bonuses based on type",
+        "priority": 2
+      }
+    }
+  ]
+}
