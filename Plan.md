@@ -110,19 +110,100 @@ This allows us to deliver a working multiplayer Risk Legacy game faster, then it
 
 ---
 
+## 🧪 Testing Strategy
+
+**CRITICAL**: After each module is completed, create comprehensive tests that demonstrate functionality.
+
+### Test Organization
+```
+tests/
+├── unit/              # Unit tests for utilities and helpers
+├── integration/       # API endpoint and integration tests
+├── game/              # Game logic tests (boardgame.io)
+└── helpers/           # Test utilities and fixtures
+```
+
+### Testing Requirements Per Module
+
+**Every module MUST include**:
+1. **Functional Tests**: Verify all functionality works correctly
+2. **Console Output**: Tests must log clear, readable output showing:
+   - What is being tested
+   - Input data
+   - Expected vs actual results
+   - Success/failure status
+3. **API Demonstration**: For API modules, show complete request/response cycles
+4. **Edge Cases**: Test error conditions and validation
+5. **Integration**: Show how the module integrates with dependencies
+
+### Test Execution
+- Use Bun's built-in test runner: `bun test`
+- Tests should be runnable independently: `bun test tests/integration/auth.test.ts`
+- All tests must pass before marking a module as complete
+- Add test scripts to package.json for each phase:
+  ```json
+  {
+    "scripts": {
+      "test": "bun test",
+      "test:unit": "bun test tests/unit",
+      "test:integration": "bun test tests/integration",
+      "test:game": "bun test tests/game",
+      "test:e2e": "bun test tests/e2e",
+      "test:watch": "bun test --watch",
+      "test:coverage": "bun test --coverage"
+    }
+  }
+  ```
+
+### Test Template
+```typescript
+import { describe, test, expect, beforeAll, afterAll } from 'bun:test'
+
+describe('Module X.Y: Feature Name', () => {
+  beforeAll(() => {
+    console.log('\n=== Testing Module X.Y: Feature Name ===\n')
+  })
+
+  test('should demonstrate core functionality', async () => {
+    console.log('📝 Test: Core functionality')
+    console.log('Input:', JSON.stringify(input, null, 2))
+
+    const result = await functionUnderTest(input)
+
+    console.log('Output:', JSON.stringify(result, null, 2))
+    console.log('✅ Test passed\n')
+
+    expect(result).toBeDefined()
+  })
+
+  afterAll(() => {
+    console.log('=== Module X.Y Tests Complete ===\n')
+  })
+})
+```
+
+### Console Output Standards
+- Use emojis for visual clarity: ✅ ❌ 📝 🔍 🎯
+- Print formatted JSON for complex objects
+- Show clear test sections with headers
+- Display timing information for performance tests
+- Log API endpoints being tested
+
+---
+
 ## Phase 1: Foundation & Infrastructure
 
 ### Module 1.1: Project Setup
-**Status**: Partially Complete
+**Status**: ✅ Complete
 **Dependencies**: None
 
 Tasks:
 - [x] Initialize TypeScript project
-- [ ] Verify/install Bun runtime
-- [ ] Update package.json for Bun compatibility
-- [ ] Install boardgame.io dependencies via Bun
-- [ ] Configure build system for Bun
-- [ ] Setup src/server directory structure:
+- [x] Verify/install Bun runtime
+- [x] Update package.json for Bun compatibility
+- [x] Install boardgame.io dependencies via Bun
+- [x] Configure build system for Bun
+- [x] Setup src/server directory structure:
   ```
   src/server/
   ├── api/           # Hono API route handlers
@@ -151,11 +232,16 @@ Tasks:
   │   └── auth.ts
   └── index.ts       # Main server entry point (Hono app)
   ```
-- [ ] Configure environment variables (.env.example)
-- [ ] Setup logging framework (pino or similar)
-- [ ] Create bun scripts (dev, build, start)
+- [x] Configure environment variables (.env.example)
+- [x] Setup logging framework (winston)
+- [x] Create bun scripts (dev, build, start)
 
-**Deliverable**: Working Bun + TypeScript build with boardgame.io imports
+**Deliverable**: Working Bun + TypeScript build with boardgame.io imports ✅
+
+**Tests**: `tests/integration/server-health.test.ts` ✅
+- Basic server health check
+- 404 error handling
+- Server metadata verification
 
 ---
 
@@ -208,12 +294,20 @@ Tasks:
   - GET /api/rulebook/section/:name - Get specific rule section
 - [ ] Create rule lookup/search functionality
 - [ ] Validate extracted rules against game implementation
+- [ ] **Create comprehensive tests in `tests/integration/rulebook.test.ts`**:
+  - Test base rulebook loading and validation
+  - Test rulebook API endpoints (GET /api/rulebook/base, etc.)
+  - Test rule lookup by section and keyword
+  - Test rulebook builder with different unlock combinations
+  - Display sample rules and search results in console
+  - Verify Zod schema validation works correctly
 
 **Deliverable**: `src/server/rules/` with:
 - `base-rules.json` - Complete base game rulebook
 - `rule-modifiers.json` - Unlock pack rule modifications
 - `rulebook-builder.ts` - Generates lobby-specific rulebooks
 - `rulebook-api.ts` - API endpoints for rule access
+- **`tests/integration/rulebook.test.ts`** - Comprehensive API tests with console output
 
 **Notes**: This is critical infrastructure. Each lobby needs its own rulebook instance that clients can query. Rules should be granular enough that UI can display relevant sections during gameplay (e.g., "show combat rules" during attack phase).
 
@@ -245,12 +339,20 @@ Tasks:
   - Transaction utilities
 - [ ] Create seed script for development data
 - [ ] Add Prisma scripts to package.json
+- [ ] **Create comprehensive tests in `tests/integration/database.test.ts`**:
+  - Test database connection and initialization
+  - Test all models (create, read, update, delete)
+  - Test relationships between models
+  - Test seed script execution
+  - Display created records in console
+  - Verify Prisma Client type safety
 
 **Deliverable**:
 - `prisma/schema.prisma` - Complete database schema
 - `prisma/migrations/` - Migration files
 - `src/server/db/client.ts` - Prisma client instance
 - `src/server/db/seed.ts` - Seed script
+- **`tests/integration/database.test.ts`** - Database tests with console output
 
 ---
 
@@ -278,12 +380,135 @@ Tasks:
   - Track quantities for duplicates
 - [ ] Implement pack-based filtering (base + unlocked only)
 - [ ] Write unit tests for asset loading and validation
+- [ ] **Create comprehensive tests in `tests/unit/assets.test.ts`**:
+  - Test YAML→JSON conversion with sample files
+  - Test Zod schema validation (valid and invalid data)
+  - Test asset loader loading all asset types
+  - Test pack filtering (base vs unlocked content)
+  - Display loaded assets summary in console
+  - Verify all card types and quantities
 
 **Deliverable**:
 - `src/server/assets/schemas.ts` - Zod schemas for all asset types
 - `scripts/convert-assets.ts` - Build-time YAML→JSON converter with validation
 - `src/server/assets/loader.ts` - Runtime asset loader
 - `src/server/assets/data/*.json` - Compiled, validated asset files
+- **`tests/unit/assets.test.ts`** - Asset loading and validation tests
+
+---
+
+### Module 1.5: Board Topology Parser & Territory Data
+**Status**: Not Started
+**Dependencies**: 1.1
+**Estimated Context**: Medium-Large
+**Priority**: High - Required for game state and movement validation
+
+Tasks:
+- [ ] Manually extract territory data from board images (`assets/board/original.jpg` and `assets/board/advanced.jpg`):
+  - Identify all 42 territories with names
+  - Map territories to 6 continents (North America, South America, Europe, Africa, Asia, Australia)
+  - Record continent bonuses (troop recruitment values)
+  - Identify red star territories (10 total - used for victory condition)
+  - Note city/HQ placement markers (white X symbols)
+  - Document differences between original and advanced boards
+- [ ] Create Zod schemas for board topology:
+  ```typescript
+  import { z } from 'zod'
+
+  const TerritorySchema = z.object({
+    id: z.string(), // Unique identifier (e.g., "north-america-alaska")
+    name: z.string(), // Display name (e.g., "Alaska")
+    continent: z.string(), // Continent ID
+    adjacentTo: z.array(z.string()), // Array of territory IDs
+    hasRedStar: z.boolean(), // Is this a red star territory?
+    population: z.number().optional(), // Population value (if any)
+    startingZone: z.number().optional(), // Starting zone number (1-6)
+    coordinates: z.object({ // For SVG rendering
+      x: z.number(),
+      y: z.number()
+    }).optional()
+  })
+
+  const ContinentSchema = z.object({
+    id: z.string(),
+    name: z.string(),
+    bonus: z.number(), // Troop recruitment bonus
+    color: z.string(), // Hex color for display
+    territories: z.array(z.string()) // Territory IDs
+  })
+
+  const BoardSchema = z.object({
+    version: z.enum(['original', 'advanced']),
+    territories: z.array(TerritorySchema),
+    continents: z.array(ContinentSchema),
+    totalRedStars: z.number()
+  })
+  ```
+- [ ] Create JSON files with complete board data:
+  - `assets/board/original-topology.json` - Original board layout
+  - `assets/board/advanced-topology.json` - Advanced board with additional territories
+- [ ] Generate SVG versions of both boards:
+  - Use `bun add sharp` for image processing (if needed)
+  - Create SVG with layered elements:
+    - Base map layer (territories as paths/polygons)
+    - Territory labels
+    - Adjacency connection layer
+    - Red star markers
+    - City/HQ placement markers
+  - Output: `assets/board/original.svg` and `assets/board/advanced.svg`
+  - Include data attributes for interactivity (territory-id, continent-id, etc.)
+- [ ] Create board data loader utility:
+  - Load and validate JSON topology files
+  - Build adjacency lookup tables for fast validation
+  - Create helper functions:
+    - `areTerritoriesAdjacent(t1, t2): boolean`
+    - `getTerritoryById(id): Territory`
+    - `getContinentTerritories(continentId): Territory[]`
+    - `getRedStarTerritories(): Territory[]`
+    - `validateMovement(from, to): boolean`
+- [ ] Create visualization script (optional):
+  - Generate adjacency graph visualization for validation
+  - Verify all territories are reachable
+  - Check for isolated territories or broken connections
+- [ ] **Create comprehensive tests in `tests/unit/board-topology.test.ts`**:
+  - Test board data loading and Zod validation
+  - Test adjacency lookups (verify all connections are bidirectional)
+  - Test continent territory counts match physical board
+  - Test red star count (should be exactly 10)
+  - Test movement validation (adjacent vs non-adjacent)
+  - Test helper utilities
+  - Display board statistics in console:
+    - Total territories per continent
+    - Red star territory names
+    - Adjacency counts per territory
+  - Verify no isolated territories
+
+**Deliverable**:
+- `assets/board/original-topology.json` - Complete original board data
+- `assets/board/advanced-topology.json` - Complete advanced board data
+- `assets/board/original.svg` - SVG version of original board
+- `assets/board/advanced.svg` - SVG version of advanced board
+- `src/server/board/topology.ts` - Board data loader and utilities
+- `src/server/board/schemas.ts` - Zod schemas for board data
+- **`tests/unit/board-topology.test.ts`** - Board topology tests
+
+**Notes**:
+- The board topology is CRITICAL for game logic - every move validation depends on adjacency data
+- Manual extraction is required since OCR may be unreliable for territory names
+- SVG generation can use territory boundaries from the original images as reference
+- Consider creating a simple visual validator to ensure adjacencies are correct
+- The advanced board has some different territory configurations - document these carefully
+
+**Territory Count Reference** (from images):
+- North America: ~9 territories (yellow)
+- South America: ~4 territories (orange)
+- Europe: ~7 territories (blue)
+- Africa: ~6 territories (brown)
+- Asia: ~12 territories (green/olive)
+- Australia: ~4 territories (purple)
+- **Total**: ~42 territories
+
+**Red Stars** (10 total) - territories marked with red star symbols
 
 ---
 
@@ -327,8 +552,18 @@ Tasks:
   ```
 - [ ] Use Prisma Client for user queries with Zod validation
 - [ ] Write integration tests
+- [ ] **Create comprehensive tests in `tests/integration/auth.test.ts`**:
+  - Test user registration (success and validation errors)
+  - Test user login (success and wrong password)
+  - Test JWT token generation and validation
+  - Test protected endpoint access with/without token
+  - Test GET /api/auth/me with valid token
+  - Display full auth flow in console (register → login → access protected route)
+  - Show request/response for each endpoint
 
-**Deliverable**: `src/server/api/auth.ts` with type-safe, validated authentication
+**Deliverable**:
+- `src/server/api/auth.ts` with type-safe, validated authentication
+- **`tests/integration/auth.test.ts`** - Complete auth flow tests with console output
 
 ---
 
@@ -375,8 +610,20 @@ Tasks:
 - [ ] Implement unlock condition checking
 - [ ] Update rulebook when packs unlock
 - [ ] Write integration tests
+- [ ] **Create comprehensive tests in `tests/integration/campaigns.test.ts`**:
+  - Test campaign creation with authentication
+  - Test listing user's campaigns
+  - Test getting campaign details
+  - Test inviting players to campaign
+  - Test tracking and retrieving unlocks
+  - Test campaign-specific rulebook generation
+  - Display full campaign lifecycle in console
+  - Show JSON responses for all endpoints
+  - Test permission controls (can't access other user's campaigns)
 
-**Deliverable**: `src/server/api/campaigns.ts` with campaign CRUD operations
+**Deliverable**:
+- `src/server/api/campaigns.ts` with campaign CRUD operations
+- **`tests/integration/campaigns.test.ts`** - Complete campaign API tests with console output
 
 ---
 
@@ -384,7 +631,7 @@ Tasks:
 
 ### Module 3.1: Game State Definition
 **Status**: Not Started
-**Dependencies**: 1.3
+**Dependencies**: 1.3, 1.5 (Board Topology)
 **Estimated Context**: Medium
 
 Tasks:
@@ -394,11 +641,20 @@ Tasks:
   - Combat state (attacker, defender, rolls, etc.)
   - Campaign state (unlocks, signatures, scars, etc.)
   - Deck state (territories, events, missions, etc.)
-- [ ] Create board topology (territory adjacencies)
+- [ ] Import and integrate board topology from Module 1.5
 - [ ] Implement initial state setup function
 - [ ] Create state helper utilities (getTerritory, addTroops, etc.)
+- [ ] **Create comprehensive tests in `tests/game/state.test.ts`**:
+  - Test state initialization with various player counts
+  - Test board topology integration (all territories have valid adjacencies)
+  - Test helper utilities (getTerritory, addTroops, etc.)
+  - Display initial game state in console
+  - Verify all TypeScript types are correct
+  - Test state serialization/deserialization
 
-**Deliverable**: `src/server/game/state.ts` with complete state types
+**Deliverable**:
+- `src/server/game/state.ts` with complete state types
+- **`tests/game/state.test.ts`** - State initialization and utility tests
 
 ---
 
@@ -421,8 +677,18 @@ Tasks:
 - [ ] Implement turn order logic (fewer stars go first)
 - [ ] Add validation for setup moves
 - [ ] Create stage transitions
+- [ ] **Create comprehensive tests in `tests/game/setup.test.ts`**:
+  - Test complete setup phase flow (3-5 players)
+  - Test faction selection order based on stars
+  - Test power selection (choosing 1 of 2 powers)
+  - Test initial troop and HQ placement
+  - Test validation (can't select taken faction, invalid placements)
+  - Display setup phase progression in console
+  - Show final game state after setup
 
-**Deliverable**: `src/server/game/phases/setup.ts` with working setup phase
+**Deliverable**:
+- `src/server/game/phases/setup.ts` with working setup phase
+- **`tests/game/setup.test.ts`** - Setup phase tests with console output
 
 ---
 
@@ -443,8 +709,17 @@ Tasks:
   - 3+ matching values = 4 × value troops
 - [ ] Add validation for troop placement
 - [ ] Handle faction-specific recruitment bonuses
+- [ ] **Create comprehensive tests in `tests/game/recruit.test.ts`**:
+  - Test recruit troop calculation (territories ÷ 3, min 3)
+  - Test Balkania faction (rounds up)
+  - Test card turn-in mechanics (all three types)
+  - Test troop placement validation
+  - Display recruitment calculations in console
+  - Show card turn-in examples
 
-**Deliverable**: `src/server/game/phases/recruit.ts`
+**Deliverable**:
+- `src/server/game/phases/recruit.ts`
+- **`tests/game/recruit.test.ts`** - Recruitment phase tests
 
 ---
 
@@ -475,8 +750,19 @@ Tasks:
   - HQ conquest (award star)
 - [ ] Track combat for unlock conditions (3 missiles, etc.)
 - [ ] Add comprehensive validation
+- [ ] **Create comprehensive tests in `tests/game/combat.test.ts`**:
+  - Test dice rolling and combat resolution
+  - Test fortification bonus application
+  - Test all special combat conditions (natural 6s, three-of-a-kind)
+  - Test missile usage
+  - Test HQ conquest and star award
+  - Test faction-specific combat modifications
+  - Display combat examples with dice rolls in console
+  - Show complete attack sequences
 
-**Deliverable**: `src/server/game/combat.ts` with complete combat system
+**Deliverable**:
+- `src/server/game/combat.ts` with complete combat system
+- **`tests/game/combat.test.ts`** - Combat system tests with battle examples
 
 ---
 
@@ -498,8 +784,17 @@ Tasks:
   - maneuver(from, to, count)
   - drawCard(type)
 - [ ] Add turn-end validation
+- [ ] **Create comprehensive tests in `tests/game/maneuver.test.ts`**:
+  - Test standard maneuver between connected territories
+  - Test Saharan Republic special maneuver (anywhere)
+  - Test card drawing conditions (1+ and 4+ conquests)
+  - Test Balkania coin card special (4+ expansion)
+  - Display maneuver examples in console
+  - Show card draw scenarios
 
-**Deliverable**: `src/server/game/phases/maneuver.ts`
+**Deliverable**:
+- `src/server/game/phases/maneuver.ts`
+- **`tests/game/maneuver.test.ts`** - Maneuver and card draw tests
 
 ---
 
@@ -527,8 +822,18 @@ Tasks:
   - addScar(factionId, scarId)
 - [ ] Update campaign state with permanent changes
 - [ ] Trigger pack unlocks
+- [ ] **Create comprehensive tests in `tests/game/endgame.test.ts`**:
+  - Test star tracking (all 4 ways to earn stars)
+  - Test win condition (first to 4 stars)
+  - Test end-game moves (board signing, stickers, scars)
+  - Test unlock condition triggers
+  - Test campaign state updates
+  - Display complete game-to-victory scenario in console
+  - Show star progression throughout game
 
-**Deliverable**: `src/server/game/phases/endgame.ts`
+**Deliverable**:
+- `src/server/game/phases/endgame.ts`
+- **`tests/game/endgame.test.ts`** - Victory and end-game tests
 
 ---
 
@@ -583,8 +888,17 @@ Tasks:
 - [ ] Implement power selection during setup
 - [ ] Add unlocked powers from campaign
 - [ ] Test all power interactions
+- [ ] **Create comprehensive tests in `tests/game/powers.test.ts`**:
+  - Test each of the 10 starting faction powers individually
+  - Test power hooks (onTurnStart, onAttack, etc.)
+  - Test power interactions and edge cases
+  - Test power selection during setup
+  - Display power effects in action (console examples)
+  - Show how each power modifies game behavior
 
-**Deliverable**: `src/server/game/powers.ts` with all faction powers
+**Deliverable**:
+- `src/server/game/powers.ts` with all faction powers
+- **`tests/game/powers.test.ts`** - All faction power tests
 
 ---
 
@@ -633,8 +947,17 @@ Tasks:
 - [ ] Add AI configuration (optional)
 - [ ] Create game factory that accepts campaign state
 - [ ] Write integration tests for full game flow
+- [ ] **Create comprehensive tests in `tests/game/full-game.test.ts`**:
+  - Test complete game flow (setup → turns → victory)
+  - Test phase transitions
+  - Test playerView (secret information filtering)
+  - Test multi-player game scenarios
+  - Display complete 3-player game simulation in console
+  - Show state at each phase transition
 
-**Deliverable**: `src/server/game/index.ts` exporting complete game
+**Deliverable**:
+- `src/server/game/index.ts` exporting complete game
+- **`tests/game/full-game.test.ts`** - Complete game flow integration tests
 
 ---
 
@@ -658,8 +981,17 @@ Tasks:
 - [ ] Add logging middleware (compatible with Bun)
 - [ ] Create health check endpoint
 - [ ] Configure WebSocket support
+- [ ] **Create comprehensive tests in `tests/integration/boardgame-server.test.ts`**:
+  - Test server initialization
+  - Test database adapter connection
+  - Test lobby system endpoints
+  - Test WebSocket connectivity
+  - Test authentication integration
+  - Display server status and capabilities in console
 
-**Deliverable**: `src/server/boardgame-server.ts`
+**Deliverable**:
+- `src/server/boardgame-server.ts`
+- **`tests/integration/boardgame-server.test.ts`** - Server setup tests
 
 **Note**: Ensure all middleware is compatible with Bun runtime
 
@@ -686,8 +1018,19 @@ Tasks:
   - Support rule lookups by section/keyword
 - [ ] Update campaign after game completion
 - [ ] Handle game save/load
+- [ ] **Create comprehensive tests in `tests/integration/lobbies.test.ts`**:
+  - Test lobby creation for campaign
+  - Test joining lobby with campaign validation
+  - Test starting game with campaign state
+  - Test lobby-specific rulebook access
+  - Test faction uniqueness enforcement
+  - Test game completion and campaign updates
+  - Display full lobby lifecycle in console
+  - Show game state initialization with campaign context
 
-**Deliverable**: `src/server/api/lobbies.ts`
+**Deliverable**:
+- `src/server/api/lobbies.ts`
+- **`tests/integration/lobbies.test.ts`** - Lobby API tests
 
 ---
 
@@ -706,8 +1049,17 @@ Tasks:
 - [ ] Implement static file serving for images
 - [ ] Add caching headers
 - [ ] Filter assets by campaign unlocks
+- [ ] **Create comprehensive tests in `tests/integration/assets.test.ts`**:
+  - Test all asset endpoints (packs, factions, powers, etc.)
+  - Test static file serving
+  - Test campaign-based filtering (base vs unlocked)
+  - Test caching headers
+  - Display sample assets in console
+  - Show pack filtering examples
 
-**Deliverable**: `src/server/api/assets.ts`
+**Deliverable**:
+- `src/server/api/assets.ts`
+- **`tests/integration/assets.test.ts`** - Asset API tests
 
 ---
 
@@ -752,8 +1104,19 @@ Tasks:
   ```
 - [ ] Add graceful shutdown handling
 - [ ] Create development and production startup scripts
+- [ ] **Create comprehensive tests in `tests/integration/server.test.ts`**:
+  - Test server startup and shutdown
+  - Test all route mounting
+  - Test error handling middleware
+  - Test CORS configuration
+  - Test integration between Hono and boardgame.io server
+  - Display server routes and configuration in console
+  - Test end-to-end API flow (auth → campaign → lobby → game)
 
-**Deliverable**: `src/server/index.ts` - main server entry point
+**Deliverable**:
+- `src/server/index.ts` - main server entry point
+- **`tests/integration/server.test.ts`** - Server integration tests
+- **`tests/e2e/complete-flow.test.ts`** - End-to-end game flow test
 
 **Note**: Hono works natively with Bun.serve() for optimal performance
 
@@ -938,11 +1301,11 @@ Tasks:
 
 ## Current Status Summary
 
-**Last Updated**: 2025-01-04
+**Last Updated**: 2025-11-04
 
 ### ✅ Completed Modules
 - **Planning Phase**: All planning documents created
-  - Plan.md ✅
+  - Plan.md ✅ (Updated with comprehensive testing strategy)
   - GAME_INDEX.md ✅
   - ASSETS_INDEX.md ✅
   - BOARDGAMEIO_INDEX.md ✅
@@ -952,36 +1315,53 @@ Tasks:
   - ZOD_NOTES.md ✅
   - .env.example ✅
   - package.json (initial setup) ✅
+- **Testing Infrastructure** ✅
+  - tests/ directory structure created
+  - Test helper utilities (`tests/helpers/test-utils.ts`)
+  - Example test demonstrating pattern (`tests/integration/server-health.test.ts`)
+  - Test scripts added to package.json
+  - Testing strategy documented in Plan.md and tests/README.md
+- **Module 1.1: Project Setup** ✅
+  - Bun runtime verified (v1.3.1)
+  - boardgame.io and all dependencies installed
+  - Winston logging framework configured
+  - Complete directory structure created
+  - Basic Hono server with API route stubs
+  - Build system working (TypeScript + Bun)
+  - Dev server tested and operational
+  - Basic health check tests passing
 
 ### 🚧 In Progress
 - None
 
 ### ⏭️ Next Module to Implement
-**Module 1.1: Project Setup**
-- Status: Partially Complete (package.json exists)
-- File: See Phase 1, Module 1.1 below
-- Next action: Install dependencies and create directory structure
+**Module 1.2: Rules Parser & Machine-Readable Rulebook**
+- Status: Not Started ⚠️ HIGH PRIORITY
+- Dependencies: Module 1.1 ✅
+- File: See Phase 1, Module 1.2
+- Next action: Extract rules from rules.pdf and create base-rules.json
 
 ### 📋 Upcoming Modules (In Order)
 1. ✅ Module 1.1: Project Setup
-2. Module 1.2: Rules Parser & Machine-Readable Rulebook ⚠️ HIGH PRIORITY
+2. ⏭️ Module 1.2: Rules Parser & Machine-Readable Rulebook ⚠️ HIGH PRIORITY
 3. Module 1.3: Database Schema & Setup (Prisma)
 4. Module 1.4: Asset Loader & Build-Time Conversion
-5. Module 2.1: User Authentication API
-6. Module 2.2: Campaign Management API
+5. Module 1.5: Board Topology Parser & Territory Data ⚠️ HIGH PRIORITY
+6. Module 2.1: User Authentication API
+7. Module 2.2: Campaign Management API
 ... (see full list in Phase sections below)
 
 ### 📊 Progress Tracking
-- **Phase 1** (Foundation): 0/4 modules complete
+- **Phase 1** (Foundation): 1/5 modules complete (20%)
 - **Phase 2** (User & Campaign): 0/2 modules complete
 - **Phase 3** (Core Game): 0/8 modules complete (2 deferred to post-MVP)
 - **Phase 4** (Integration): 0/5 modules complete
 - **Phase 5+** (Advanced): Deferred to post-MVP
 
-**Total Progress**: 0/19 MVP modules complete
+**Total Progress**: 1/20 MVP modules complete (5%)
 
 ### 🎯 Current Sprint Goal
-Complete Phase 1 (Foundation & Infrastructure) - 4 modules
+Complete Phase 1 (Foundation & Infrastructure) - 5 modules (20% complete)
 
 ---
 
