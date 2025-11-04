@@ -36,9 +36,10 @@ Each territory card has:
 - **Missiles**: Limited quantity, can be used once per game to modify combat dice
 - **Resource Cards**: Territory cards gained by conquering territories
 - **Coin Cards**: 10 total, used for recruiting troops
-- **Mission Cards**: Secret objectives for bonus stars
+- **Mission Cards**: Public objectives that any player may complete for bonus stars
 - **Event Cards**: Random events that affect gameplay
 - **Scar Cards**: Permanent modifications to factions/territories
+- **Red Star Tokens**: Victory point tokens (first to 4 wins the game)
 
 ### Stickers & Permanent Changes
 The game includes various stickers that make permanent changes:
@@ -76,17 +77,20 @@ Each player's turn consists of:
    - Move troops between connected friendly territories
    - Saharan Republic can move between any territories
 
-4. **Draw Resource Card** (if conquered at least 1 territory)
-   - Draw territory card from conquered territory
-   - OR draw coin card if conquered 4+ territories (Balkania special)
+4. **Draw Resource Card** (if conquered at least 1 territory from an opponent)
+   - Look at face-up Territory cards on sideboard
+   - If you control a territory shown, you must draw that card
+   - If you can't draw any shown territory, draw a face-up Coin card
+   - Balkania special: Draw coin card when expanding 4+ without conquest
 
 ### Win Conditions
-- **First to 4 stars wins immediately**
-- Stars can be earned by:
-  - Conquering a territory with HQ (1 star)
-  - Completing mission card objective (1 star)
-  - Controlling territories that total 10+ red stars (1 star)
-  - Winning the game (1-2 stars based on stars already on board)
+- **First to 4 Red Star tokens wins immediately**
+- Red Star tokens (the victory points) can be earned by:
+  - Conquering a territory with an opponent's HQ (1 token)
+  - Completing a mission card objective (1-2 tokens as noted on card)
+  - Winning the game (awards Red Star tokens based on campaign state)
+
+Note: "Red Stars" are victory point tokens that players earn, not markers on territories
 
 ### End Game
 - Winner signs the board

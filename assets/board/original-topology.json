@@ -1,0 +1,562 @@
+{
+  "version": "original",
+  "metadata": {
+    "description": "Risk Legacy Original Board - Starting game topology",
+    "totalTerritories": 42,
+    "lastUpdated": "2025-11-04"
+  },
+  "continents": [
+    {
+      "id": "north-america",
+      "name": "North America",
+      "bonus": 5,
+      "color": "#FFD700",
+      "territories": [
+        "north-america-alaska",
+        "north-america-northwest-territory",
+        "north-america-alberta",
+        "north-america-ontario",
+        "north-america-quebec",
+        "north-america-greenland",
+        "north-america-western-united-states",
+        "north-america-eastern-united-states",
+        "north-america-central-america"
+      ]
+    },
+    {
+      "id": "south-america",
+      "name": "South America",
+      "bonus": 2,
+      "color": "#FF8C00",
+      "territories": [
+        "south-america-venezuela",
+        "south-america-peru",
+        "south-america-brazil",
+        "south-america-argentina"
+      ]
+    },
+    {
+      "id": "europe",
+      "name": "Europe",
+      "bonus": 5,
+      "color": "#4169E1",
+      "territories": [
+        "europe-iceland",
+        "europe-great-britain",
+        "europe-scandinavia",
+        "europe-northern-europe",
+        "europe-western-europe",
+        "europe-southern-europe",
+        "europe-russia"
+      ]
+    },
+    {
+      "id": "africa",
+      "name": "Africa",
+      "bonus": 3,
+      "color": "#8B4513",
+      "territories": [
+        "africa-north-africa",
+        "africa-egypt",
+        "africa-east-africa",
+        "africa-congo",
+        "africa-south-africa",
+        "africa-madagascar"
+      ]
+    },
+    {
+      "id": "asia",
+      "name": "Asia",
+      "bonus": 7,
+      "color": "#32CD32",
+      "territories": [
+        "asia-ural",
+        "asia-siberia",
+        "asia-yakutsk",
+        "asia-kamchatka",
+        "asia-irkutsk",
+        "asia-mongolia",
+        "asia-china",
+        "asia-afghanistan",
+        "asia-middle-east",
+        "asia-india",
+        "asia-siam",
+        "asia-japan"
+      ]
+    },
+    {
+      "id": "australia",
+      "name": "Australia",
+      "bonus": 2,
+      "color": "#9370DB",
+      "territories": [
+        "australia-indonesia",
+        "australia-new-guinea",
+        "australia-western-australia",
+        "australia-eastern-australia"
+      ]
+    }
+  ],
+  "territories": [
+    {
+      "id": "north-america-alaska",
+      "name": "Alaska",
+      "continent": "north-america",
+      "adjacentTo": [
+        "north-america-northwest-territory",
+        "north-america-alberta",
+        "asia-kamchatka"
+      ]
+    },
+    {
+      "id": "north-america-northwest-territory",
+      "name": "Northwest Territory",
+      "continent": "north-america",
+      "adjacentTo": [
+        "north-america-alaska",
+        "north-america-alberta",
+        "north-america-ontario",
+        "north-america-greenland"
+      ]
+    },
+    {
+      "id": "north-america-alberta",
+      "name": "Alberta",
+      "continent": "north-america",
+      "adjacentTo": [
+        "north-america-alaska",
+        "north-america-northwest-territory",
+        "north-america-ontario",
+        "north-america-western-united-states"
+      ]
+    },
+    {
+      "id": "north-america-ontario",
+      "name": "Ontario",
+      "continent": "north-america",
+      "adjacentTo": [
+        "north-america-northwest-territory",
+        "north-america-alberta",
+        "north-america-quebec",
+        "north-america-greenland",
+        "north-america-western-united-states",
+        "north-america-eastern-united-states"
+      ]
+    },
+    {
+      "id": "north-america-quebec",
+      "name": "Quebec",
+      "continent": "north-america",
+      "adjacentTo": [
+        "north-america-ontario",
+        "north-america-greenland",
+        "north-america-eastern-united-states"
+      ]
+    },
+    {
+      "id": "north-america-greenland",
+      "name": "Greenland",
+      "continent": "north-america",
+      "adjacentTo": [
+        "north-america-northwest-territory",
+        "north-america-ontario",
+        "north-america-quebec",
+        "europe-iceland"
+      ]
+    },
+    {
+      "id": "north-america-western-united-states",
+      "name": "Western United States",
+      "continent": "north-america",
+      "adjacentTo": [
+        "north-america-alberta",
+        "north-america-ontario",
+        "north-america-eastern-united-states",
+        "north-america-central-america"
+      ]
+    },
+    {
+      "id": "north-america-eastern-united-states",
+      "name": "Eastern United States",
+      "continent": "north-america",
+      "adjacentTo": [
+        "north-america-ontario",
+        "north-america-quebec",
+        "north-america-western-united-states",
+        "north-america-central-america"
+      ]
+    },
+    {
+      "id": "north-america-central-america",
+      "name": "Central America",
+      "continent": "north-america",
+      "adjacentTo": [
+        "north-america-western-united-states",
+        "north-america-eastern-united-states",
+        "south-america-venezuela"
+      ]
+    },
+    {
+      "id": "south-america-venezuela",
+      "name": "Venezuela",
+      "continent": "south-america",
+      "adjacentTo": [
+        "north-america-central-america",
+        "south-america-peru",
+        "south-america-brazil"
+      ]
+    },
+    {
+      "id": "south-america-peru",
+      "name": "Peru",
+      "continent": "south-america",
+      "adjacentTo": [
+        "south-america-venezuela",
+        "south-america-brazil",
+        "south-america-argentina"
+      ]
+    },
+    {
+      "id": "south-america-brazil",
+      "name": "Brazil",
+      "continent": "south-america",
+      "adjacentTo": [
+        "south-america-venezuela",
+        "south-america-peru",
+        "south-america-argentina",
+        "africa-north-africa"
+      ]
+    },
+    {
+      "id": "south-america-argentina",
+      "name": "Argentina",
+      "continent": "south-america",
+      "adjacentTo": [
+        "south-america-peru",
+        "south-america-brazil"
+      ]
+    },
+    {
+      "id": "europe-iceland",
+      "name": "Iceland",
+      "continent": "europe",
+      "adjacentTo": [
+        "north-america-greenland",
+        "europe-great-britain",
+        "europe-scandinavia"
+      ]
+    },
+    {
+      "id": "europe-great-britain",
+      "name": "Great Britain",
+      "continent": "europe",
+      "adjacentTo": [
+        "europe-iceland",
+        "europe-scandinavia",
+        "europe-northern-europe",
+        "europe-western-europe"
+      ]
+    },
+    {
+      "id": "europe-scandinavia",
+      "name": "Scandinavia",
+      "continent": "europe",
+      "adjacentTo": [
+        "europe-iceland",
+        "europe-great-britain",
+        "europe-northern-europe",
+        "europe-russia"
+      ]
+    },
+    {
+      "id": "europe-northern-europe",
+      "name": "Northern Europe",
+      "continent": "europe",
+      "adjacentTo": [
+        "europe-great-britain",
+        "europe-scandinavia",
+        "europe-western-europe",
+        "europe-southern-europe",
+        "europe-russia"
+      ]
+    },
+    {
+      "id": "europe-western-europe",
+      "name": "Western Europe",
+      "continent": "europe",
+      "adjacentTo": [
+        "europe-great-britain",
+        "europe-northern-europe",
+        "europe-southern-europe",
+        "africa-north-africa"
+      ]
+    },
+    {
+      "id": "europe-southern-europe",
+      "name": "Southern Europe",
+      "continent": "europe",
+      "adjacentTo": [
+        "europe-northern-europe",
+        "europe-western-europe",
+        "europe-russia",
+        "africa-north-africa",
+        "africa-egypt",
+        "asia-middle-east"
+      ]
+    },
+    {
+      "id": "europe-russia",
+      "name": "Russia",
+      "continent": "europe",
+      "adjacentTo": [
+        "europe-scandinavia",
+        "europe-northern-europe",
+        "europe-southern-europe",
+        "asia-ural",
+        "asia-afghanistan",
+        "asia-middle-east"
+      ]
+    },
+    {
+      "id": "africa-north-africa",
+      "name": "North Africa",
+      "continent": "africa",
+      "adjacentTo": [
+        "south-america-brazil",
+        "europe-western-europe",
+        "europe-southern-europe",
+        "africa-egypt",
+        "africa-east-africa",
+        "africa-congo"
+      ]
+    },
+    {
+      "id": "africa-egypt",
+      "name": "Egypt",
+      "continent": "africa",
+      "adjacentTo": [
+        "europe-southern-europe",
+        "africa-north-africa",
+        "africa-east-africa",
+        "asia-middle-east"
+      ]
+    },
+    {
+      "id": "africa-east-africa",
+      "name": "East Africa",
+      "continent": "africa",
+      "adjacentTo": [
+        "africa-north-africa",
+        "africa-egypt",
+        "africa-congo",
+        "africa-south-africa",
+        "africa-madagascar",
+        "asia-middle-east"
+      ]
+    },
+    {
+      "id": "africa-congo",
+      "name": "Congo",
+      "continent": "africa",
+      "adjacentTo": [
+        "africa-north-africa",
+        "africa-east-africa",
+        "africa-south-africa"
+      ]
+    },
+    {
+      "id": "africa-south-africa",
+      "name": "South Africa",
+      "continent": "africa",
+      "adjacentTo": [
+        "africa-congo",
+        "africa-east-africa",
+        "africa-madagascar"
+      ]
+    },
+    {
+      "id": "africa-madagascar",
+      "name": "Madagascar",
+      "continent": "africa",
+      "adjacentTo": [
+        "africa-east-africa",
+        "africa-south-africa"
+      ]
+    },
+    {
+      "id": "asia-ural",
+      "name": "Ural",
+      "continent": "asia",
+      "adjacentTo": [
+        "europe-russia",
+        "asia-siberia",
+        "asia-afghanistan",
+        "asia-china"
+      ]
+    },
+    {
+      "id": "asia-siberia",
+      "name": "Siberia",
+      "continent": "asia",
+      "adjacentTo": [
+        "asia-ural",
+        "asia-yakutsk",
+        "asia-irkutsk",
+        "asia-mongolia",
+        "asia-china"
+      ]
+    },
+    {
+      "id": "asia-yakutsk",
+      "name": "Yakutsk",
+      "continent": "asia",
+      "adjacentTo": [
+        "asia-siberia",
+        "asia-irkutsk",
+        "asia-kamchatka"
+      ]
+    },
+    {
+      "id": "asia-kamchatka",
+      "name": "Kamchatka",
+      "continent": "asia",
+      "adjacentTo": [
+        "north-america-alaska",
+        "asia-yakutsk",
+        "asia-irkutsk",
+        "asia-mongolia",
+        "asia-japan"
+      ]
+    },
+    {
+      "id": "asia-irkutsk",
+      "name": "Irkutsk",
+      "continent": "asia",
+      "adjacentTo": [
+        "asia-siberia",
+        "asia-yakutsk",
+        "asia-kamchatka",
+        "asia-mongolia"
+      ]
+    },
+    {
+      "id": "asia-mongolia",
+      "name": "Mongolia",
+      "continent": "asia",
+      "adjacentTo": [
+        "asia-siberia",
+        "asia-irkutsk",
+        "asia-kamchatka",
+        "asia-china",
+        "asia-japan"
+      ]
+    },
+    {
+      "id": "asia-china",
+      "name": "China",
+      "continent": "asia",
+      "adjacentTo": [
+        "asia-ural",
+        "asia-siberia",
+        "asia-mongolia",
+        "asia-afghanistan",
+        "asia-india",
+        "asia-siam"
+      ]
+    },
+    {
+      "id": "asia-afghanistan",
+      "name": "Afghanistan",
+      "continent": "asia",
+      "adjacentTo": [
+        "europe-russia",
+        "asia-ural",
+        "asia-china",
+        "asia-middle-east",
+        "asia-india"
+      ]
+    },
+    {
+      "id": "asia-middle-east",
+      "name": "Middle East",
+      "continent": "asia",
+      "adjacentTo": [
+        "europe-southern-europe",
+        "europe-russia",
+        "africa-egypt",
+        "africa-east-africa",
+        "asia-afghanistan",
+        "asia-india"
+      ]
+    },
+    {
+      "id": "asia-india",
+      "name": "India",
+      "continent": "asia",
+      "adjacentTo": [
+        "asia-afghanistan",
+        "asia-china",
+        "asia-middle-east",
+        "asia-siam"
+      ]
+    },
+    {
+      "id": "asia-siam",
+      "name": "Siam",
+      "continent": "asia",
+      "adjacentTo": [
+        "asia-china",
+        "asia-india",
+        "australia-indonesia"
+      ]
+    },
+    {
+      "id": "asia-japan",
+      "name": "Japan",
+      "continent": "asia",
+      "adjacentTo": [
+        "asia-kamchatka",
+        "asia-mongolia"
+      ]
+    },
+    {
+      "id": "australia-indonesia",
+      "name": "Indonesia",
+      "continent": "australia",
+      "adjacentTo": [
+        "asia-siam",
+        "australia-new-guinea",
+        "australia-western-australia"
+      ]
+    },
+    {
+      "id": "australia-new-guinea",
+      "name": "New Guinea",
+      "continent": "australia",
+      "adjacentTo": [
+        "australia-indonesia",
+        "australia-western-australia",
+        "australia-eastern-australia"
+      ]
+    },
+    {
+      "id": "australia-western-australia",
+      "name": "Western Australia",
+      "continent": "australia",
+      "adjacentTo": [
+        "australia-indonesia",
+        "australia-new-guinea",
+        "australia-eastern-australia"
+      ]
+    },
+    {
+      "id": "australia-eastern-australia",
+      "name": "Eastern Australia",
+      "continent": "australia",
+      "adjacentTo": [
+        "australia-new-guinea",
+        "australia-western-australia"
+      ]
+    }
+  ]
+}
