@@ -1,17 +1,36 @@
 {
   "name": "risklegacy2",
-  "module": "index.ts",
+  "module": "src/server/index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "bun run --watch src/server/index.ts",
+    "build": "bun build --target=bun --outdir=dist src/server/index.ts",
+    "start": "bun run dist/index.js",
+    "convert-assets": "bun run scripts/convert-assets.ts",
+    "db:generate": "bunx prisma generate",
+    "db:migrate": "bunx prisma migrate dev",
+    "db:migrate:prod": "bunx prisma migrate deploy",
+    "db:seed": "bun run src/server/db/seed.ts",
+    "db:studio": "bunx prisma studio",
+    "db:reset": "bunx prisma migrate reset",
+    "test": "bun test",
+    "type-check": "tsc --noEmit"
+  },
   "devDependencies": {
     "@types/bun": "latest",
-    "fvtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types#main"
+    "@types/bcrypt": "^5.0.2",
+    "@types/js-yaml": "^4.0.9",
+    "prisma": "^5.8.1",
+    "typescript": "^5.3.3"
   },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "scripts": {
-    "build": "bun build --format esm --outdir dist src/index.ts",
-    "dev": "bun build --watch --format esm --outdir dist src/index.ts"
+  "dependencies": {
+    "@prisma/client": "^5.8.1",
+    "@hono/jwt": "^1.0.0",
+    "@hono/zod-validator": "^0.2.1",
+    "bcrypt": "^5.1.1",
+    "hono": "^3.12.0",
+    "js-yaml": "^4.1.0",
+    "zod": "^3.22.4"
   }
 }
