@@ -24,15 +24,15 @@
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {
-    "@types/bun": "latest",
     "@types/bcrypt": "^5.0.2",
+    "@types/bun": "latest",
     "@types/js-yaml": "^4.0.9",
-    "prisma": "^5.8.1",
+    "prisma": "^6.18.0",
     "typescript": "^5.3.3"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.7.4",
-    "@prisma/client": "^5.8.1",
+    "@prisma/client": "^6.18.0",
     "bcrypt": "^5.1.1",
     "boardgame.io": "^0.50.2",
     "hono": "^3.12.0",

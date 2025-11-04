@@ -1,0 +1,101 @@
+// This is your Prisma schema file
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// User model for authentication
+model User {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  createdCampaigns Campaign[]       @relation("CampaignCreator")
+  campaignPlayers  CampaignPlayer[]
+}
+
+// Campaign model - represents a series of Risk Legacy games
+model Campaign {
+  id        String   @id @default(cuid())
+  name      String
+  creatorId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  state     String   @default("{}") // JSON string for campaign state
+
+  // Relations
+  creator              User                     @relation("CampaignCreator", fields: [creatorId], references: [id])
+  players              CampaignPlayer[]
+  unlocks              CampaignUnlock[]
+  permanentModifications PermanentModification[]
+  games                CampaignGame[]
+}
+
+// CampaignPlayer - tracks player participation in a campaign
+model CampaignPlayer {
+  id         String   @id @default(cuid())
+  campaignId String
+  userId     String
+  faction    String?  // Nullable until chosen
+  stars      Int      @default(0)
+  joinedAt   DateTime @default(now())
+
+  // Relations
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id])
+
+  @@unique([campaignId, userId])
+}
+
+// CampaignUnlock - tracks unlocked content packs
+model CampaignUnlock {
+  id          String   @id @default(cuid())
+  campaignId  String
+  packName    String   // e.g., "secondwin", "worldcapital", etc.
+  unlockedAt  DateTime @default(now())
+  unlockedBy  String?  // UserId who triggered the unlock (optional)
+
+  // Relations
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  @@unique([campaignId, packName])
+}
+
+// PermanentModification - tracks stickers, scars, board modifications
+model PermanentModification {
+  id          String   @id @default(cuid())
+  campaignId  String
+  type        String   // "scar", "sticker", "city", "naming", "resource", etc.
+  data        String   // JSON string with modification details
+  appliedAt   DateTime @default(now())
+  appliedBy   String?  // UserId who applied the modification (optional)
+  gameNumber  Int?     // Which game in the campaign this was applied
+
+  // Relations
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+}
+
+// CampaignGame - tracks individual games within a campaign
+model CampaignGame {
+  id          String    @id @default(cuid())
+  campaignId  String
+  gameNumber  Int       // Sequential game number in campaign (1, 2, 3, ...)
+  winnerId    String?   // UserId of the winner
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  gameState   String    @default("{}") // JSON string for final game state
+
+  // Relations
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  @@unique([campaignId, gameNumber])
+}
