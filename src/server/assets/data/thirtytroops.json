@@ -1,0 +1,157 @@
+{
+  "name": "thirtytroops",
+  "factions": [
+    {
+      "namespace": "aliens.factions.threemissiles.risklegacy.spacemandev",
+      "imgPath": "aliens.png",
+      "qty": 1,
+      "data": {
+        "troop_img": "aliens_1.png",
+        "three_img": "aliens_3.png",
+        "hq_img": "aliens_hq.png",
+        "name": "Aliens"
+      }
+    }
+  ],
+  "powers": [
+    {
+      "namespace": "alien_collaborator.powers.thirtytroops.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "Add one to your resource total when turning in cards. Lose 2 extra troops when expanding into empty cities.",
+        "type": "weakness"
+      }
+    },
+    {
+      "namespace": "primitive.powers.thirtytroops.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "You do not add population when recruiting troops.",
+        "type": "weakness"
+      }
+    },
+    {
+      "namespace": "unpopular.powers.thirtytroops.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "You lose 1 extra troop when expanding into empty cities.",
+        "type": "weakness"
+      }
+    },
+    {
+      "namespace": "short_sighted.powers.thirtytroops.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "You can only maneuver into adjacent territories.",
+        "type": "weakness"
+      }
+    },
+    {
+      "namespace": "purist.powers.thirtytroops.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "You cannot have more than 2 coin cards. You must keep the coin cards face up in front of you, not in your hand.",
+        "type": "weakness"
+      }
+    }
+  ],
+  "territories": [
+    {
+      "namespace": "alien_island.territories.base.risklegacy.spacemandev",
+      "imgPath": "alien_island.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 3,
+        "continent": "None"
+      }
+    }
+  ],
+  "scars": [
+    {
+      "namespace": "cautious.scars.thirtytroops.risklegacy.spacemandev",
+      "imgPath": "cautious.jpg",
+      "qty": 1,
+      "data": {
+        "tokenImg": "cautious.jpg"
+      }
+    },
+    {
+      "namespace": "primitive.scars.thirtytroops.risklegacy.spacemandev",
+      "imgPath": "primitive.jpg",
+      "qty": 1,
+      "data": {
+        "tokenImg": "primitive.jpg"
+      }
+    },
+    {
+      "namespace": "purist.scars.thirtytroops.risklegacy.spacemandev",
+      "imgPath": "purist.jpg",
+      "qty": 1,
+      "data": {
+        "tokenImg": "purist.jpg"
+      }
+    },
+    {
+      "namespace": "short_sighted.scars.thirtytroops.risklegacy.spacemandev",
+      "imgPath": "short_sighted.jpg",
+      "qty": 1,
+      "data": {
+        "tokenImg": "short_sighted.jpg"
+      }
+    },
+    {
+      "namespace": "unpopular.scars.thirtytroops.risklegacy.spacemandev",
+      "imgPath": "unpopular.jpg",
+      "qty": 1,
+      "data": {
+        "tokenImg": "unpopular.jpg"
+      }
+    }
+  ],
+  "stickers": [
+    {
+      "namespace": "ruins.stickersheet.thirtytroops.risklegacy.spacemandev",
+      "imgPath": "ruins.png",
+      "qty": 1
+    }
+  ],
+  "missions": [],
+  "events": [
+    {
+      "namespace": "beam_down.events.thirtytroops.risklegacy.spacemandev",
+      "imgPath": "beam_down.jpg",
+      "qty": 2
+    },
+    {
+      "namespace": "beam_down.events.thirtytroops.risklegacy.spacemandev",
+      "imgPath": "beam_down.jpg",
+      "qty": 2
+    },
+    {
+      "namespace": "die_humans.events.thirtytroops.risklegacy.spacemandev",
+      "imgPath": "die_humans.jpg",
+      "qty": 3
+    },
+    {
+      "namespace": "die_humans.events.thirtytroops.risklegacy.spacemandev",
+      "imgPath": "die_humans.jpg",
+      "qty": 3
+    },
+    {
+      "namespace": "die_humans.events.thirtytroops.risklegacy.spacemandev",
+      "imgPath": "die_humans.jpg",
+      "qty": 3
+    },
+    {
+      "namespace": "mysterious_island.events.thirtytroops.risklegacy.spacemandev",
+      "imgPath": "mysterious_island.jpg",
+      "qty": 2
+    },
+    {
+      "namespace": "mysterious_island.events.thirtytroops.risklegacy.spacemandev",
+      "imgPath": "mysterious_island.jpg",
+      "qty": 2
+    }
+  ]
+}

@@ -1,0 +1,1242 @@
+{
+  "name": "base",
+  "factions": [
+    {
+      "namespace": "balkania.factions.base.risklegacy.spacemandev",
+      "imgPath": "balkania.png",
+      "qty": 1,
+      "data": {
+        "troop_img": "balkania_1.png",
+        "three_img": "balkania_3.png",
+        "hq_img": "balkania_hq.png",
+        "name": "Imperial Balkania"
+      }
+    },
+    {
+      "namespace": "enclave.factions.base.risklegacy.spacemandev",
+      "imgPath": "enclave.png",
+      "qty": 1,
+      "data": {
+        "troop_img": "enclave_1.png",
+        "three_img": "enclave_3.png",
+        "hq_img": "enclave_hq.png",
+        "name": "Enclave of the Bear"
+      }
+    },
+    {
+      "namespace": "khan.factions.base.risklegacy.spacemandev",
+      "imgPath": "khan.png",
+      "qty": 1,
+      "data": {
+        "troop_img": "khan_1.png",
+        "three_img": "khan_3.png",
+        "hq_img": "khan_hq.png",
+        "name": "Khan Industries"
+      }
+    },
+    {
+      "namespace": "mechaniker.factions.base.risklegacy.spacemandev",
+      "imgPath": "mechaniker.png",
+      "qty": 1,
+      "data": {
+        "troop_img": "mechaniker_1.png",
+        "three_img": "mechaniker_3.png",
+        "hq_img": "mechaniker_hq.png",
+        "name": "Die Mechaniker"
+      }
+    },
+    {
+      "namespace": "saharan.factions.base.risklegacy.spacemandev",
+      "imgPath": "saharan.png",
+      "qty": 1,
+      "data": {
+        "troop_img": "saharan_1.png",
+        "three_img": "saharan_3.png",
+        "hq_img": "saharan_hq.png",
+        "name": "Saharan Republic"
+      }
+    }
+  ],
+  "powers": [
+    {
+      "namespace": "khan_1.powers.base.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "At the start of your turn, place one troop in each territory that has an HQ that you control.",
+        "type": "starter"
+      }
+    },
+    {
+      "namespace": "khan_2.powers.base.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "When drawing a territory card, you may place one troop into that territory if you control it.",
+        "type": "starter"
+      }
+    },
+    {
+      "namespace": "mechaniker_1.powers.base.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "Your starting HQ is always treated as FORTIFIED when you defend it.",
+        "type": "starter"
+      }
+    },
+    {
+      "namespace": "mechaniker_2.powers.base.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "If your defense roll is two natural 6s, that territory cannot be attacked again for the rest of the turn.",
+        "type": "starter"
+      }
+    },
+    {
+      "namespace": "enclave_1.powers.base.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "The defender subtracts 1 from their lower defense die in the first territory you attack during your turn.",
+        "type": "starter"
+      }
+    },
+    {
+      "namespace": "enclave_2.powers.base.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "If your attack roll is a natural three of a kind and at least one defending troop is defeated, you conquer the territory. Remove all defending troops.",
+        "type": "starter"
+      }
+    },
+    {
+      "namespace": "balkania_1.powers.base.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "When recruiting troops, round up when dividing your territory and population by 3, not down.",
+        "type": "starter"
+      }
+    },
+    {
+      "namespace": "balkania_2.powers.base.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "You still draw a resource card at the end of your turn where you expanded into 4+ territories, even if you didn't conquer a territory.",
+        "type": "starter"
+      }
+    },
+    {
+      "namespace": "saharan_1.powers.base.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "You can make your maneuver at any point during your turn.",
+        "type": "starter"
+      }
+    },
+    {
+      "namespace": "saharan_2.powers.base.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "When making your manuever, you may manuever between any two territories you control, even if they are not connected.",
+        "type": "starter"
+      }
+    }
+  ],
+  "territories": [
+    {
+      "namespace": "afghanistan.territories.base.risklegacy.spacemandev",
+      "imgPath": "afghanistan.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "asia"
+      }
+    },
+    {
+      "namespace": "alaska.territories.base.risklegacy.spacemandev",
+      "imgPath": "alaska.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "north_america"
+      }
+    },
+    {
+      "namespace": "alberta.territories.base.risklegacy.spacemandev",
+      "imgPath": "alberta.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "north_america"
+      }
+    },
+    {
+      "namespace": "argentina.territories.base.risklegacy.spacemandev",
+      "imgPath": "argentina.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "south_america"
+      }
+    },
+    {
+      "namespace": "brazil.territories.base.risklegacy.spacemandev",
+      "imgPath": "brazil.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "south_america"
+      }
+    },
+    {
+      "namespace": "central_africa.territories.base.risklegacy.spacemandev",
+      "imgPath": "central_africa.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "africa"
+      }
+    },
+    {
+      "namespace": "central_america.territories.base.risklegacy.spacemandev",
+      "imgPath": "central_america.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "north_america"
+      }
+    },
+    {
+      "namespace": "china.territories.base.risklegacy.spacemandev",
+      "imgPath": "china.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "asia"
+      }
+    },
+    {
+      "namespace": "east_africa.territories.base.risklegacy.spacemandev",
+      "imgPath": "east_africa.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "africa"
+      }
+    },
+    {
+      "namespace": "eastern_australia.territories.base.risklegacy.spacemandev",
+      "imgPath": "eastern_australia.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "australia"
+      }
+    },
+    {
+      "namespace": "eastern_canada.territories.base.risklegacy.spacemandev",
+      "imgPath": "eastern_canada.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "north_america"
+      }
+    },
+    {
+      "namespace": "eastern_united_states.territories.base.risklegacy.spacemandev",
+      "imgPath": "eastern_united_states.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "north_america"
+      }
+    },
+    {
+      "namespace": "egypt.territories.base.risklegacy.spacemandev",
+      "imgPath": "egypt.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "africa"
+      }
+    },
+    {
+      "namespace": "great_britian.territories.base.risklegacy.spacemandev",
+      "imgPath": "great_britian.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "europe"
+      }
+    },
+    {
+      "namespace": "greenland.territories.base.risklegacy.spacemandev",
+      "imgPath": "greenland.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "north_america"
+      }
+    },
+    {
+      "namespace": "iceland.territories.base.risklegacy.spacemandev",
+      "imgPath": "iceland.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "europe"
+      }
+    },
+    {
+      "namespace": "india.territories.base.risklegacy.spacemandev",
+      "imgPath": "india.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "asia"
+      }
+    },
+    {
+      "namespace": "indonesia.territories.base.risklegacy.spacemandev",
+      "imgPath": "indonesia.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "australia"
+      }
+    },
+    {
+      "namespace": "irkutsk.territories.base.risklegacy.spacemandev",
+      "imgPath": "irkutsk.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "asia"
+      }
+    },
+    {
+      "namespace": "japan.territories.base.risklegacy.spacemandev",
+      "imgPath": "japan.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "asia"
+      }
+    },
+    {
+      "namespace": "kamchatka.territories.base.risklegacy.spacemandev",
+      "imgPath": "kamchatka.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "asia"
+      }
+    },
+    {
+      "namespace": "madagascar.territories.base.risklegacy.spacemandev",
+      "imgPath": "madagascar.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "africa"
+      }
+    },
+    {
+      "namespace": "middle_east.territories.base.risklegacy.spacemandev",
+      "imgPath": "middle_east.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "asia"
+      }
+    },
+    {
+      "namespace": "mongolia.territories.base.risklegacy.spacemandev",
+      "imgPath": "mongolia.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "asia"
+      }
+    },
+    {
+      "namespace": "new_guinea.territories.base.risklegacy.spacemandev",
+      "imgPath": "new_guinea.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "australia"
+      }
+    },
+    {
+      "namespace": "north_africa.territories.base.risklegacy.spacemandev",
+      "imgPath": "north_africa.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "africa"
+      }
+    },
+    {
+      "namespace": "northern_europe.territories.base.risklegacy.spacemandev",
+      "imgPath": "northern_europe.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "europe"
+      }
+    },
+    {
+      "namespace": "northwest_territory.territories.base.risklegacy.spacemandev",
+      "imgPath": "northwest_territory.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "north_america"
+      }
+    },
+    {
+      "namespace": "ontario.territories.base.risklegacy.spacemandev",
+      "imgPath": "ontario.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "north_america"
+      }
+    },
+    {
+      "namespace": "peru.territories.base.risklegacy.spacemandev",
+      "imgPath": "peru.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "south_america"
+      }
+    },
+    {
+      "namespace": "russia.territories.base.risklegacy.spacemandev",
+      "imgPath": "russia.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "europe"
+      }
+    },
+    {
+      "namespace": "scandinavia.territories.base.risklegacy.spacemandev",
+      "imgPath": "scandinavia.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "europe"
+      }
+    },
+    {
+      "namespace": "siberia.territories.base.risklegacy.spacemandev",
+      "imgPath": "siberia.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "asia"
+      }
+    },
+    {
+      "namespace": "south_africa.territories.base.risklegacy.spacemandev",
+      "imgPath": "south_africa.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "africa"
+      }
+    },
+    {
+      "namespace": "southeast_asia.territories.base.risklegacy.spacemandev",
+      "imgPath": "southeast_asia.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "asia"
+      }
+    },
+    {
+      "namespace": "southern_europe.territories.base.risklegacy.spacemandev",
+      "imgPath": "southern_europe.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "europe"
+      }
+    },
+    {
+      "namespace": "ural.territories.base.risklegacy.spacemandev",
+      "imgPath": "ural.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "asia"
+      }
+    },
+    {
+      "namespace": "venezuela.territories.base.risklegacy.spacemandev",
+      "imgPath": "venezuela.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "south_america"
+      }
+    },
+    {
+      "namespace": "western_australia.territories.base.risklegacy.spacemandev",
+      "imgPath": "western_australia.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "australia"
+      }
+    },
+    {
+      "namespace": "western_europe.territories.base.risklegacy.spacemandev",
+      "imgPath": "western_europe.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "europe"
+      }
+    },
+    {
+      "namespace": "western_united_states.territories.base.risklegacy.spacemandev",
+      "imgPath": "western_united_states.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "north_america"
+      }
+    },
+    {
+      "namespace": "yakutsk.territories.base.risklegacy.spacemandev",
+      "imgPath": "yakutsk.jpg",
+      "cardBack": "resource_card.jpg",
+      "qty": 1,
+      "data": {
+        "value": 1,
+        "continent": "asia"
+      }
+    }
+  ],
+  "scars": [
+    {
+      "namespace": "bunker.scars.base.risklegacy.spacemandev",
+      "imgPath": "bunker.jpg",
+      "qty": 3,
+      "data": {
+        "tokenImg": "scar_bunker.png"
+      }
+    },
+    {
+      "namespace": "bunker.scars.base.risklegacy.spacemandev",
+      "imgPath": "bunker.jpg",
+      "qty": 3,
+      "data": {
+        "tokenImg": "scar_bunker.png"
+      }
+    },
+    {
+      "namespace": "bunker.scars.base.risklegacy.spacemandev",
+      "imgPath": "bunker.jpg",
+      "qty": 3,
+      "data": {
+        "tokenImg": "scar_bunker.png"
+      }
+    },
+    {
+      "namespace": "ammo_shortage.scars.base.risklegacy.spacemandev",
+      "imgPath": "ammo_shortage.jpg",
+      "qty": 3,
+      "data": {
+        "tokenImg": "scar_ammo_shortage.png"
+      }
+    },
+    {
+      "namespace": "ammo_shortage.scars.base.risklegacy.spacemandev",
+      "imgPath": "ammo_shortage.jpg",
+      "qty": 3,
+      "data": {
+        "tokenImg": "scar_ammo_shortage.png"
+      }
+    },
+    {
+      "namespace": "ammo_shortage.scars.base.risklegacy.spacemandev",
+      "imgPath": "ammo_shortage.jpg",
+      "qty": 3,
+      "data": {
+        "tokenImg": "scar_ammo_shortage.png"
+      }
+    }
+  ],
+  "stickers": [
+    {
+      "namespace": "coin_pregame.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 12,
+      "data": {
+        "folder": "Before First Game"
+      }
+    },
+    {
+      "namespace": "coin_pregame.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 12,
+      "data": {
+        "folder": "Before First Game"
+      }
+    },
+    {
+      "namespace": "coin_pregame.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 12,
+      "data": {
+        "folder": "Before First Game"
+      }
+    },
+    {
+      "namespace": "coin_pregame.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 12,
+      "data": {
+        "folder": "Before First Game"
+      }
+    },
+    {
+      "namespace": "coin_pregame.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 12,
+      "data": {
+        "folder": "Before First Game"
+      }
+    },
+    {
+      "namespace": "coin_pregame.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 12,
+      "data": {
+        "folder": "Before First Game"
+      }
+    },
+    {
+      "namespace": "coin_pregame.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 12,
+      "data": {
+        "folder": "Before First Game"
+      }
+    },
+    {
+      "namespace": "coin_pregame.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 12,
+      "data": {
+        "folder": "Before First Game"
+      }
+    },
+    {
+      "namespace": "coin_pregame.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 12,
+      "data": {
+        "folder": "Before First Game"
+      }
+    },
+    {
+      "namespace": "coin_pregame.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 12,
+      "data": {
+        "folder": "Before First Game"
+      }
+    },
+    {
+      "namespace": "coin_pregame.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 12,
+      "data": {
+        "folder": "Before First Game"
+      }
+    },
+    {
+      "namespace": "coin_pregame.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 12,
+      "data": {
+        "folder": "Before First Game"
+      }
+    },
+    {
+      "namespace": "fortification.scars.base.risklegacy.spacemandev",
+      "imgPath": "fortification.png",
+      "qty": 5,
+      "data": {
+        "folder": "Game Won"
+      }
+    },
+    {
+      "namespace": "fortification.scars.base.risklegacy.spacemandev",
+      "imgPath": "fortification.png",
+      "qty": 5,
+      "data": {
+        "folder": "Game Won"
+      }
+    },
+    {
+      "namespace": "fortification.scars.base.risklegacy.spacemandev",
+      "imgPath": "fortification.png",
+      "qty": 5,
+      "data": {
+        "folder": "Game Won"
+      }
+    },
+    {
+      "namespace": "fortification.scars.base.risklegacy.spacemandev",
+      "imgPath": "fortification.png",
+      "qty": 5,
+      "data": {
+        "folder": "Game Won"
+      }
+    },
+    {
+      "namespace": "fortification.scars.base.risklegacy.spacemandev",
+      "imgPath": "fortification.png",
+      "qty": 5,
+      "data": {
+        "folder": "Game Won"
+      }
+    },
+    {
+      "namespace": "major_city.scars.base.risklegacy.spacemandev",
+      "imgPath": "major_city.png",
+      "qty": 5,
+      "data": {
+        "folder": "Game Won"
+      }
+    },
+    {
+      "namespace": "major_city.scars.base.risklegacy.spacemandev",
+      "imgPath": "major_city.png",
+      "qty": 5,
+      "data": {
+        "folder": "Game Won"
+      }
+    },
+    {
+      "namespace": "major_city.scars.base.risklegacy.spacemandev",
+      "imgPath": "major_city.png",
+      "qty": 5,
+      "data": {
+        "folder": "Game Won"
+      }
+    },
+    {
+      "namespace": "major_city.scars.base.risklegacy.spacemandev",
+      "imgPath": "major_city.png",
+      "qty": 5,
+      "data": {
+        "folder": "Game Won"
+      }
+    },
+    {
+      "namespace": "major_city.scars.base.risklegacy.spacemandev",
+      "imgPath": "major_city.png",
+      "qty": 5,
+      "data": {
+        "folder": "Game Won"
+      }
+    },
+    {
+      "namespace": "cancel_scar.scars.base.risklegacy.spacemandev",
+      "imgPath": "cancel.png",
+      "qty": 4,
+      "data": {
+        "folder": "Game Won"
+      }
+    },
+    {
+      "namespace": "cancel_scar.scars.base.risklegacy.spacemandev",
+      "imgPath": "cancel.png",
+      "qty": 4,
+      "data": {
+        "folder": "Game Won"
+      }
+    },
+    {
+      "namespace": "cancel_scar.scars.base.risklegacy.spacemandev",
+      "imgPath": "cancel.png",
+      "qty": 4,
+      "data": {
+        "folder": "Game Won"
+      }
+    },
+    {
+      "namespace": "cancel_scar.scars.base.risklegacy.spacemandev",
+      "imgPath": "cancel.png",
+      "qty": 4,
+      "data": {
+        "folder": "Game Won"
+      }
+    },
+    {
+      "namespace": "contient_bonus.scars.base.risklegacy.spacemandev",
+      "imgPath": "plus_one.png",
+      "qty": 1,
+      "data": {
+        "folder": "Game Won"
+      }
+    },
+    {
+      "namespace": "continent_penalty.scars.base.risklegacy.spacemandev",
+      "imgPath": "minus_one.png",
+      "qty": 1,
+      "data": {
+        "folder": "Game Won"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "coin_heldon.scars.base.risklegacy.spacemandev",
+      "imgPath": "coin.png",
+      "qty": 41,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "minor_city.scars.base.risklegacy.spacemandev",
+      "imgPath": "minor_city.png",
+      "qty": 9,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "minor_city.scars.base.risklegacy.spacemandev",
+      "imgPath": "minor_city.png",
+      "qty": 9,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "minor_city.scars.base.risklegacy.spacemandev",
+      "imgPath": "minor_city.png",
+      "qty": 9,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "minor_city.scars.base.risklegacy.spacemandev",
+      "imgPath": "minor_city.png",
+      "qty": 9,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "minor_city.scars.base.risklegacy.spacemandev",
+      "imgPath": "minor_city.png",
+      "qty": 9,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "minor_city.scars.base.risklegacy.spacemandev",
+      "imgPath": "minor_city.png",
+      "qty": 9,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "minor_city.scars.base.risklegacy.spacemandev",
+      "imgPath": "minor_city.png",
+      "qty": 9,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "minor_city.scars.base.risklegacy.spacemandev",
+      "imgPath": "minor_city.png",
+      "qty": 9,
+      "data": {
+        "folder": "Held On"
+      }
+    },
+    {
+      "namespace": "minor_city.scars.base.risklegacy.spacemandev",
+      "imgPath": "minor_city.png",
+      "qty": 9,
+      "data": {
+        "folder": "Held On"
+      }
+    }
+  ],
+  "missions": [],
+  "events": []
+}

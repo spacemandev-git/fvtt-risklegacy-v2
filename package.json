@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "bun run --watch src/server/index.ts",
     "build": "bun build --target=bun --outdir=dist src/server/index.ts",
+    "build:assets": "bun run scripts/convert-assets.ts",
     "start": "bun run dist/index.js",
     "convert-assets": "bun run scripts/convert-assets.ts",
     "db:generate": "bunx prisma generate",

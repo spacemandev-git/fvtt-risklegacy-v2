@@ -1,0 +1,90 @@
+{
+  "name": "worldcapital",
+  "factions": [],
+  "powers": [
+    {
+      "namespace": "advanced_tactics.powers.worldcapital.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "When recruiting troops, turn in at least 2 territory cards that have 4+ resources each.",
+        "type": "mission"
+      }
+    },
+    {
+      "namespace": "advanced_training.powers.eliminated.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "When recruiting troops, turn in 10+ troops",
+        "type": "mission"
+      }
+    },
+    {
+      "namespace": "forced_occupation.powers.eliminated.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "Knock out or Eliminate a player who has 3+ resource cards",
+        "type": "missio"
+      }
+    },
+    {
+      "namespace": "guerilla_warfare.powers.eliminated.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "Control all the Bunker and Mercenary territories",
+        "type": "missio"
+      }
+    },
+    {
+      "namespace": "urban_troop_surge.powers.eliminated.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "Control the World Captial and 3 Major Cities",
+        "type": "missio"
+      }
+    },
+    {
+      "namespace": "wide_border.powers.eliminated.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "Control 2 continents at the start of your turn.",
+        "type": "mission"
+      }
+    }
+  ],
+  "territories": [],
+  "scars": [],
+  "stickers": [],
+  "missions": [
+    {
+      "namespace": "advanced_tatics.missions.worldcapital.risklegacy.spacemandev",
+      "imgPath": "advanced_tactics.jpg",
+      "qty": 1
+    },
+    {
+      "namespace": "advanced_training.missions.worldcapital.risklegacy.spacemandev",
+      "imgPath": "advanced_training.jpg",
+      "qty": 1
+    },
+    {
+      "namespace": "forced_occupatation.missions.worldcapital.risklegacy.spacemandev",
+      "imgPath": "forced_occupation.jpg",
+      "qty": 1
+    },
+    {
+      "namespace": "guerilla_warfare.missions.worldcapital.risklegacy.spacemandev",
+      "imgPath": "guerilla_warfare.jpg",
+      "qty": 1
+    },
+    {
+      "namespace": "urban_troop_surge.missions.worldcapital.risklegacy.spacemandev",
+      "imgPath": "urban_troop_surge.jpg",
+      "qty": 1
+    },
+    {
+      "namespace": "wide_border.missions.worldcapital.risklegacy.spacemandev",
+      "imgPath": "wide_border.jpg",
+      "qty": 1
+    }
+  ],
+  "events": []
+}

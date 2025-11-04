@@ -1,0 +1,71 @@
+{
+  "name": "minorcities",
+  "factions": [],
+  "powers": [],
+  "territories": [],
+  "scars": [
+    {
+      "namespace": "biohazard.scars.minorcities.risklegacy.spacemandev",
+      "imgPath": "biohazard.jpg",
+      "qty": 3,
+      "data": {
+        "tokenImg": "scar_biohazard.png"
+      }
+    },
+    {
+      "namespace": "biohazard.scars.minorcities.risklegacy.spacemandev",
+      "imgPath": "biohazard.jpg",
+      "qty": 3,
+      "data": {
+        "tokenImg": "scar_biohazard.png"
+      }
+    },
+    {
+      "namespace": "biohazard.scars.minorcities.risklegacy.spacemandev",
+      "imgPath": "biohazard.jpg",
+      "qty": 3,
+      "data": {
+        "tokenImg": "scar_biohazard.png"
+      }
+    }
+  ],
+  "stickers": [],
+  "missions": [],
+  "events": [
+    {
+      "namespace": "control_the_people.events.minorcities.risklegacy.spacemandev",
+      "imgPath": "control_the_people.jpg",
+      "qty": 2
+    },
+    {
+      "namespace": "control_the_people.events.minorcities.risklegacy.spacemandev",
+      "imgPath": "control_the_people.jpg",
+      "qty": 2
+    },
+    {
+      "namespace": "fortify.events.minorcities.risklegacy.spacemandev",
+      "imgPath": "fortify.jpg",
+      "qty": 2
+    },
+    {
+      "namespace": "fortify.events.minorcities.risklegacy.spacemandev",
+      "imgPath": "fortify.jpg",
+      "qty": 2
+    },
+    {
+      "namespace": "resistance.minorcities.risklegacy.spacemandev",
+      "imgPath": "resistance.jpg",
+      "qty": 2
+    },
+    {
+      "namespace": "resistance.minorcities.risklegacy.spacemandev",
+      "imgPath": "resistance.jpg",
+      "qty": 2
+    },
+    {
+      "namespace": "riots.events.minorcities.risklegacy.spacemandev",
+      "imgPath": "riots.jpg",
+      "qty": 1
+    }
+  ]
+}

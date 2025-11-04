@@ -1,0 +1,104 @@
+{
+  "name": "threemissiles",
+  "factions": [
+    {
+      "namespace": "mutants.factions.threemissiles.risklegacy.spacemandev",
+      "imgPath": "mutant.png",
+      "qty": 1,
+      "data": {
+        "troop_img": "mutant_1.png",
+        "three_img": "mutant_3.png",
+        "hq_img": "mutant_hq.png",
+        "name": "Mutants"
+      }
+    }
+  ],
+  "powers": [
+    {
+      "namespace": "emp.powers.threemissiles.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "Activate before a combat roll. Dice rolled for combat in that territory can't be modified for the rest of turn.",
+        "type": "missile"
+      }
+    },
+    {
+      "namespace": "interference.powers.threemissiles.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "Activate as a player draws a resource card. That card cannot be drawn. The player can draw any other eligible card.",
+        "type": "missile"
+      }
+    },
+    {
+      "namespace": "recon.powers.threemissiles.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "Activate before you would draw a coin card. You may take any once face up territory card instead.",
+        "type": "missile"
+      }
+    },
+    {
+      "namespace": "bad_intel.powers.threemissiles.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "Activate at the start of another player's turn. Deny that player one continent bonus, your choice.",
+        "type": "missile"
+      }
+    },
+    {
+      "namespace": "rally.powers.threemissiles.risklegacy.spacemandev",
+      "qty": 1,
+      "data": {
+        "description": "Activate at the start of your turn. Place 2 troops in every HQ you control.",
+        "type": "missile"
+      }
+    }
+  ],
+  "territories": [],
+  "scars": [],
+  "stickers": [],
+  "missions": [],
+  "events": [
+    {
+      "namespace": "agent_of_chaos.events.threemissiles.risklegacy.spacemandev",
+      "imgPath": "agent_of_chaos.jpg",
+      "qty": 3
+    },
+    {
+      "namespace": "agent_of_chaos.events.threemissiles.risklegacy.spacemandev",
+      "imgPath": "agent_of_chaos.jpg",
+      "qty": 3
+    },
+    {
+      "namespace": "agent_of_chaos.events.threemissiles.risklegacy.spacemandev",
+      "imgPath": "agent_of_chaos.jpg",
+      "qty": 3
+    },
+    {
+      "namespace": "fallout.events.threemissiles.risklegacy.spacemandev",
+      "imgPath": "fallout.jpg",
+      "qty": 3
+    },
+    {
+      "namespace": "fallout.events.threemissiles.risklegacy.spacemandev",
+      "imgPath": "fallout.jpg",
+      "qty": 3
+    },
+    {
+      "namespace": "fallout.events.threemissiles.risklegacy.spacemandev",
+      "imgPath": "fallout.jpg",
+      "qty": 3
+    },
+    {
+      "namespace": "mutants_evolve_1.events.threemissiles.risklegacy.spacemandev",
+      "imgPath": "mutants_evolve_1.jpg",
+      "qty": 1
+    },
+    {
+      "namespace": "mutants_evolve_1.events.threemissiles.risklegacy.spacemandev",
+      "imgPath": "mutants_evolve_1.jpg",
+      "qty": 1
+    }
+  ]
+}

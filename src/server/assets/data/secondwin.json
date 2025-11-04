@@ -1,0 +1,76 @@
+{
+  "name": "secondwin",
+  "factions": [],
+  "powers": [],
+  "territories": [],
+  "scars": [],
+  "stickers": [
+    {
+      "namespace": "world_capital.scars.base.risklegacy.spacemandev",
+      "imgPath": "scar_capital.png",
+      "qty": 1,
+      "data": {
+        "folder": "World Capital"
+      }
+    }
+  ],
+  "missions": [
+    {
+      "namespace": "amphibious_onslaught.missions.secondwin.risklegacy.spacemandev",
+      "imgPath": "amphibious_onslaught.jpg",
+      "qty": 1
+    },
+    {
+      "namespace": "explore_the_world.missions.secondwin.risklegacy.spacemandev",
+      "imgPath": "explore_the_world.jpg",
+      "qty": 1
+    },
+    {
+      "namespace": "imperial_might.missions.secondwin.risklegacy.spacemandev",
+      "imgPath": "imperial_might.jpg",
+      "qty": 1
+    },
+    {
+      "namespace": "reign_of_terror.missions.secondwin.risklegacy.spacemandev",
+      "imgPath": "reign_of_terror.jpg",
+      "qty": 1
+    },
+    {
+      "namespace": "superior_infrastructure.missions.secondwin.risklegacy.spacemandev",
+      "imgPath": "superior_infrastructure.jpg",
+      "qty": 1
+    },
+    {
+      "namespace": "unexpected_attack.missions.secondwin.risklegacy.spacemandev",
+      "imgPath": "unexpected_attack.jpg",
+      "qty": 1
+    },
+    {
+      "namespace": "urban_assault.missions.secondwin.risklegacy.spacemandev",
+      "imgPath": "urban_assault.jpg",
+      "qty": 1
+    },
+    {
+      "namespace": "world_capital.missions.secondwin.risklegacy.spacemandev",
+      "imgPath": "world_capital.jpg",
+      "qty": 1
+    }
+  ],
+  "events": [
+    {
+      "namespace": "join_the_cause.events.secondwin.risklegacy.spacemandev",
+      "imgPath": "join_the_cause.jpg",
+      "qty": 3
+    },
+    {
+      "namespace": "join_the_cause.events.secondwin.risklegacy.spacemandev",
+      "imgPath": "join_the_cause.jpg",
+      "qty": 3
+    },
+    {
+      "namespace": "join_the_cause.events.secondwin.risklegacy.spacemandev",
+      "imgPath": "join_the_cause.jpg",
+      "qty": 3
+    }
+  ]
+}
