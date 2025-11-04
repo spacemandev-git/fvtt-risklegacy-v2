@@ -361,39 +361,60 @@ Tasks:
 **Dependencies**: 1.1
 **Estimated Context**: Medium
 
+**Note**: Rules are already handled in Module 1.2 (`src/server/rules/`). This module focuses on game assets (factions, powers, territories, scars, stickers).
+
 Tasks:
-- [ ] Install dependencies: `bun add js-yaml zod && bun add -D @types/js-yaml`
-- [ ] Create Zod schemas for all asset types:
-  - Faction, Power, Territory, Scar, Sticker, Mission, Event
+- [ ] Install dependencies: `bun add js-yaml zod && bun add -D @types/js-yaml` (js-yaml and zod already installed)
+- [ ] Create Zod schemas for game asset types in `src/server/assets/schemas.ts`:
+  - Faction (namespace, imgPath, data with troop_img, three_img, hq_img, name)
+  - Power (faction powers with effects and conditions)
+  - Territory (territory cards with continent, value, etc.)
+  - Scar (permanent negative effects on factions)
+  - Sticker (cities, resource bonuses, world capital, etc.)
+  - Mission (secret objectives - when unlocked)
+  - Event (event cards - when unlocked)
   - Validate YAML data during conversion
-- [ ] Create build script to convert YAML → JSON:
-  - Parse all YAML files in assets/unlocks/
-  - **Ignore all .js files** (legacy FoundryVTT code)
+- [ ] Create build script `scripts/convert-assets.ts` to convert YAML → JSON:
+  - Parse all YAML files in `assets/unlocks/` (base, secondwin, worldcapital, minorcities, eliminated, thirtytroops, threemissiles)
+  - Parse assets by type: factions, powers, territories, scars, stickersheet, missions (in unlock packs), events (in unlock packs)
+  - **Ignore all .js files** (legacy FoundryVTT code: init.js, macros/)
+  - **Skip rules** (already handled in Module 1.2)
   - Validate with Zod schemas
   - Output to `src/server/assets/data/` as JSON
-  - Preserve directory structure and namespaces
-- [ ] Create asset loader utility to:
-  - Load pre-compiled JSON assets
+  - Preserve directory structure: `data/base/factions.json`, `data/secondwin/missions.json`, etc.
+  - Index cards by namespace for efficient lookup
+- [ ] Create asset loader utility `src/server/assets/loader.ts` to:
+  - Load pre-compiled JSON assets from `data/` directory
   - Re-validate with Zod on load (optional, for safety)
-  - Build card databases (factions, powers, territories, etc.)
-  - Index cards by namespace
+  - Build card databases (factions, powers, territories, scars, stickers, etc.)
+  - Index cards by namespace and pack
   - Track quantities for duplicates
+  - Provide helper functions: `getFactionByNamespace()`, `getAllPowers()`, etc.
 - [ ] Implement pack-based filtering (base + unlocked only)
+  - Load only base pack assets by default
+  - Add function to load additional packs based on campaign unlocks
+  - Merge assets from multiple packs correctly
 - [ ] Write unit tests for asset loading and validation
 - [ ] **Create comprehensive tests in `tests/unit/assets.test.ts`**:
   - Test YAML→JSON conversion with sample files
   - Test Zod schema validation (valid and invalid data)
   - Test asset loader loading all asset types
   - Test pack filtering (base vs unlocked content)
-  - Display loaded assets summary in console
-  - Verify all card types and quantities
+  - Display loaded assets summary in console (count per type, per pack)
+  - Verify all card types and quantities match source files
+  - Test namespace indexing and lookups
 
 **Deliverable**:
-- `src/server/assets/schemas.ts` - Zod schemas for all asset types
+- `src/server/assets/schemas.ts` - Zod schemas for all game asset types
 - `scripts/convert-assets.ts` - Build-time YAML→JSON converter with validation
-- `src/server/assets/loader.ts` - Runtime asset loader
-- `src/server/assets/data/*.json` - Compiled, validated asset files
-- **`tests/unit/assets.test.ts`** - Asset loading and validation tests
+- `src/server/assets/loader.ts` - Runtime asset loader with pack filtering
+- `src/server/assets/data/` - Compiled JSON assets organized by pack:
+  - `data/base/` (factions, powers, territories, scars, stickersheet)
+  - `data/secondwin/` (missions, events, etc.)
+  - `data/worldcapital/` (missions, powers, etc.)
+  - `data/minorcities/` (stickers, rules, etc.)
+  - And other unlock packs...
+- **`tests/unit/assets.test.ts`** - Asset loading and validation tests with console output
 
 ---
 
