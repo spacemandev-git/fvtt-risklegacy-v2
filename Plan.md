@@ -529,55 +529,44 @@ Tasks:
 ## Phase 2: User & Campaign Management
 
 ### Module 2.1: User Authentication API
-**Status**: Not Started
-**Dependencies**: 1.3 (Database)
+**Status**: ✅ Complete
+**Dependencies**: 1.3 (Database) ✅
 **Estimated Context**: Small
 
 Tasks:
-- [ ] Install auth dependencies via Bun:
-  - `bun add hono @hono/jwt @hono/zod-validator`
-  - `bun add bcrypt zod`
-  - `bun add -D @types/bcrypt`
-- [ ] Create Zod schemas for validation:
-  ```typescript
-  import { z } from 'zod'
-
-  const RegisterSchema = z.object({
-    username: z.string().min(3).max(20),
-    password: z.string().min(8).max(100)
-  })
-
-  const LoginSchema = z.object({
-    username: z.string(),
-    password: z.string()
-  })
-  ```
-- [ ] Create Hono routes with Zod validation:
+- [x] Install auth dependencies via Bun (jose, bcrypt, @hono/zod-validator)
+- [x] Update Prisma schema to add refreshToken and refreshTokenExpiry fields
+- [x] Create database migration for refresh token support
+- [x] Create Zod schemas for validation (RegisterSchema, LoginSchema, RefreshSchema)
+- [x] Create Hono routes with Zod validation:
   - POST /api/auth/register
   - POST /api/auth/login
+  - POST /api/auth/refresh (refresh access token)
   - GET /api/auth/me (with JWT middleware)
-- [ ] Implement password hashing with bcrypt
-- [ ] Use Hono's JWT middleware for token generation/verification
-- [ ] Create authentication middleware for protected routes:
-  ```typescript
-  import { jwt } from '@hono/jwt'
-
-  app.use('/api/*', jwt({ secret: JWT_SECRET }))
-  ```
-- [ ] Use Prisma Client for user queries with Zod validation
-- [ ] Write integration tests
-- [ ] **Create comprehensive tests in `tests/integration/auth.test.ts`**:
+- [x] Implement password hashing with bcrypt (10 rounds)
+- [x] Implement JWT token generation with jose library:
+  - Short-lived access tokens (15 minutes)
+  - Long-lived refresh tokens (30 days)
+  - Separate secrets for access and refresh tokens
+- [x] Create authentication middleware for protected routes
+- [x] Use Prisma Client for user queries with Zod validation
+- [x] **Create comprehensive tests in `tests/integration/auth.test.ts`**:
   - Test user registration (success and validation errors)
   - Test user login (success and wrong password)
   - Test JWT token generation and validation
+  - Test refresh token mechanism
   - Test protected endpoint access with/without token
-  - Test GET /api/auth/me with valid token
-  - Display full auth flow in console (register → login → access protected route)
-  - Show request/response for each endpoint
+  - Test complete authentication flow
+  - Test database integration and token expiry
+  - Display full auth flow in console (register → login → refresh → access protected route)
+  - All 16 tests passing ✅
 
-**Deliverable**:
-- `src/server/api/auth.ts` with type-safe, validated authentication
-- **`tests/integration/auth.test.ts`** - Complete auth flow tests with console output
+**Deliverable**: ✅
+- `src/server/api/auth.ts` - Complete authentication API with JWT and refresh tokens ✅
+- `src/server/middleware/auth.ts` - Authentication middleware for protected routes ✅
+- `.env.example` - Updated with JWT configuration (access + refresh tokens) ✅
+- `prisma/migrations/20251107200346_add_refresh_token_to_user/` - Database migration ✅
+- **`tests/integration/auth.test.ts`** - 16 comprehensive tests (all passing) ✅
 
 ---
 
@@ -1315,7 +1304,7 @@ Tasks:
 
 ## Current Status Summary
 
-**Last Updated**: 2025-11-04 (Module 1.5 Complete - Phase 1 Complete! 🎉)
+**Last Updated**: 2025-11-07 (Module 2.1 Complete - Authentication System! 🔐)
 
 ### ✅ Completed Modules
 - **Planning Phase**: All planning documents created
@@ -1377,16 +1366,25 @@ Tasks:
   - 21 comprehensive unit tests passing (adjacency checks, movement validation, integrity verification)
   - CORRECTIONS: Removed incorrect "red star territories" and "starting zones" that don't exist in actual game
 
+- **Module 2.1: User Authentication API** ✅
+  - JWT-based authentication with jose library
+  - Refresh token mechanism (15m access tokens, 30d refresh tokens)
+  - Complete auth API (register, login, refresh, me endpoints)
+  - Authentication middleware for protected routes
+  - Bcrypt password hashing (10 rounds)
+  - Prisma schema updated with refreshToken and refreshTokenExpiry fields
+  - 16 comprehensive integration tests (all passing)
+
 ### 🚧 In Progress
 - None
 
 ### ⏭️ Next Module to Implement
-**Module 2.1: User Authentication API**
+**Module 2.2: Campaign Management API**
 - Status: Not Started
-- Dependencies: Module 1.3 (Database) ✅
-- Priority: HIGH - Required for campaign and lobby management
-- File: See Phase 2, Module 2.1
-- Next action: Implement JWT-based authentication with Hono and Zod validation
+- Dependencies: Module 1.2 (Rules) ✅, 1.3 (Database) ✅, 1.4 (Assets) ✅, 2.1 (Auth) ✅
+- Priority: HIGH - Required for campaign system and lobby creation
+- File: See Phase 2, Module 2.2
+- Next action: Implement campaign CRUD operations with authentication
 
 ### 📋 Upcoming Modules (In Order)
 1. ✅ Module 1.1: Project Setup
@@ -1394,22 +1392,22 @@ Tasks:
 3. ✅ Module 1.3: Database Schema & Setup (Prisma)
 4. ✅ Module 1.4: Asset Loader & Build-Time Conversion
 5. ✅ Module 1.5: Board Topology Parser & Territory Data
-6. ⏭️ Module 2.1: User Authentication API ⚠️ NEXT
-7. Module 2.2: Campaign Management API
+6. ✅ Module 2.1: User Authentication API
+7. ⏭️ Module 2.2: Campaign Management API ⚠️ NEXT
 8. Module 3.1: Game State Definition
 ... (see full list in Phase sections below)
 
 ### 📊 Progress Tracking
 - **Phase 1** (Foundation): 5/5 modules complete (100%) ✅ PHASE COMPLETE
-- **Phase 2** (User & Campaign): 0/2 modules complete
+- **Phase 2** (User & Campaign): 1/2 modules complete (50%)
 - **Phase 3** (Core Game): 0/8 modules complete (2 deferred to post-MVP)
 - **Phase 4** (Integration): 0/5 modules complete
 - **Phase 5+** (Advanced): Deferred to post-MVP
 
-**Total Progress**: 5/20 MVP modules complete (25%)
+**Total Progress**: 6/20 MVP modules complete (30%)
 
 ### 🎯 Current Sprint Goal
-Complete Phase 2 (User & Campaign Management) - 2 modules (0% complete)
+Complete Phase 2 (User & Campaign Management) - 2 modules (50% complete)
 
 ---
 

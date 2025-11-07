@@ -12,11 +12,13 @@ datasource db {
 
 // User model for authentication
 model User {
-  id           String   @id @default(cuid())
-  username     String   @unique
-  passwordHash String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id                 String    @id @default(cuid())
+  username           String    @unique
+  passwordHash       String
+  refreshToken       String?   // Current refresh token (nullable)
+  refreshTokenExpiry DateTime? // When the refresh token expires
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
 
   // Relations
   createdCampaigns Campaign[]       @relation("CampaignCreator")
